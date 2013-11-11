@@ -1,0 +1,64 @@
+﻿<controls:Flyout x:Class="Subtitler.Desktop.Views.SettingsFlyout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:properties="clr-namespace:Subtitler.Desktop.Properties"
+		xmlns:viewModels="clr-namespace:Subtitler.Desktop.ViewModels"
+		mc:Ignorable="d"
+		x:Name="SettingsFly"		 
+				 
+		d:DesignHeight="300"
+		d:DesignWidth="300"
+        >
+	<controls:Flyout.Resources>
+		<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>
+		<Style x:Key="DescriptionHeaderStyle" TargetType="Label">
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+		</Style>
+	</controls:Flyout.Resources>
+
+
+	<StackPanel DataContext="{Binding Path=SettingsFlyout, Source={StaticResource ViewModelLocator}}" Margin="10 0 10 0">
+		<Label Content="Download settings" Style="{StaticResource DescriptionHeaderStyle}"></Label>
+		<controls:ToggleSwitch Content="Rename file" IsChecked="{Binding ShouldRenameFile}"  />
+		<controls:ToggleSwitch Content="Unzip file" IsChecked="{Binding ShouldUnzipFile}"  />
+		<Label Content="Language settings" Style="{StaticResource DescriptionHeaderStyle}"></Label>
+		
+		<ItemsControl ItemsSource="{Binding Languages, Mode=TwoWay}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+
+						
+						<!--<Label Content="{Binding Id}" Grid.Row="0" Grid.Column="1"/>-->
+						<Image Width="18" Height="18" Grid.Row="0" Grid.Column="1">
+							<Image.Source>
+								<!--<CroppedBitmap Source="..\Resources\allflags.gif" >
+									<CroppedBitmap.SourceRect>
+										<Int32Rect X="0" Y="0" Height="12" Width="18"></Int32Rect>
+									</CroppedBitmap.SourceRect>
+								</CroppedBitmap>-->
+								<CroppedBitmap Source="..\Resources\allflags.gif" SourceRect="{Binding Rect}"/>
+							</Image.Source>
+						</Image>
+						<CheckBox IsChecked="{Binding Use, Mode=TwoWay}" Grid.Row="0" Grid.Column="0"/>
+					</Grid>
+					
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Columns="4"></UniformGrid>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+		
+		<Grid>
+			
+		</Grid>
+	</StackPanel>
+
+</controls:Flyout>

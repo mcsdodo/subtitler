@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:models="clr-namespace:Subtitler.Desktop.Models">
+	<models:LanguageCollection x:Key="LanguageCollection">
+		<models:Language Id="alb" ImgPos="702" Name="Albanian" ShortId="sq" Use="False" />
+		<models:Language Id="ara" ImgPos="18" Name="Arabic" ShortId="ar" Use="False" />
+		<models:Language Id="baq" ImgPos="1026" Name="Basque" ShortId="eu" Use="False" />
+		<models:Language Id="bul" ImgPos="54" Name="Bulgarian" ShortId="bg" Use="False" />
+		<models:Language Id="cat" ImgPos="90" Name="Catalan" ShortId="ca"  Use="False"/>
+		<models:Language Id="chi" ImgPos="828" Name="Chinese" ShortId="zh" Use="False" />
+		<models:Language Id="cze" ImgPos="72" Name="Czech" ShortId="cs" Use="True" />
+		<models:Language Id="dan" ImgPos="108" Name="Danish" ShortId="da" Use="False" />
+		<models:Language Id="dut" ImgPos="540" Name="Dutch" ShortId="nl" Use="False" />
+		<models:Language Id="eng" ImgPos="144" Name="English" ShortId="en" Use="True" />
+		<models:Language Id="est" ImgPos="180" Name="Estonian" ShortId="et" Use="False" />
+		<models:Language Id="fin" ImgPos="216" Name="Finnish" ShortId="fi"  Use="False"/>
+		<models:Language Id="fre" ImgPos="234" Name="French" ShortId="fr" Use="False" />
+		<models:Language Id="geo" ImgPos="414" Name="Georgian" ShortId="ka" Use="False"/>
+		<models:Language Id="ger" ImgPos="126" Name="German" ShortId="de" Use="False" />
+		<models:Language Id="glg" ImgPos="864" Name="Galician" ShortId="gl" Use="False" />
+		<models:Language Id="ell" ImgPos="252" Name="Greek" ShortId="el" Use="False" />
+		<models:Language Id="heb" ImgPos="270" Name="Hebrew" ShortId="he" Use="False" />
+		<models:Language Id="hin" ImgPos="1062" Name="Hindi" ShortId="hi" Use="False" />
+		<models:Language Id="hrv" ImgPos="288" Name="Croatian" ShortId="hr" Use="False" />
+		<models:Language Id="hun" ImgPos="306" Name="Hungarian" ShortId="hu" Use="False" />
+		<models:Language Id="ice" ImgPos="360" Name="Icelandic" ShortId="is" Use="False" />
+		<models:Language Id="ind" ImgPos="342" Name="Indonesian" ShortId="id" Use="False" />
+		<models:Language Id="ita" ImgPos="378" Name="Italian" ShortId="it" Use="False" />
+		<models:Language Id="jpn" ImgPos="396" Name="Japanese" ShortId="ja" Use="False" />
+		<models:Language Id="khm" ImgPos="1080" Name="Khmer" ShortId="km" Use="False" />
+		<models:Language Id="kor" ImgPos="450" Name="Korean" ShortId="ko" Use="False" />
+		<models:Language Id="mac" ImgPos="522" Name="Macedonian" ShortId="mk"  Use="False"/>
+		<models:Language Id="may" ImgPos="882" Name="Malay" ShortId="ms" Use="False" />
+		<models:Language Id="nor" ImgPos="558" Name="Norwegian" ShortId="no" Use="False" />
+		<models:Language Id="oci" ImgPos="900" Name="Occitan" ShortId="oc" Use="False" />
+		<models:Language Id="per" ImgPos="198" Name="Persian" ShortId="fa" Use="False" />
+		<models:Language Id="pol" ImgPos="594" Name="Polish" ShortId="pl" Use="False" />
+		<models:Language Id="por" ImgPos="612" Name="Portuguese" ShortId="pt" Use="False" />
+		<models:Language Id="rus" ImgPos="648" Name="Russian" ShortId="ru" Use="False" />
+		<models:Language Id="scc" ImgPos="720" Name="Serbian" ShortId="sr" Use="False" />
+		<models:Language Id="sin" ImgPos="936" Name="Sinhalese" ShortId="si" Use="False" />
+		<models:Language Id="slo" ImgPos="666" Name="Slovak" ShortId="sk" Use="True" />
+		<models:Language Id="slv" ImgPos="684" Name="Slovenian" ShortId="sl" Use="False" />
+		<models:Language Id="spa" ImgPos="162" Name="Spanish" ShortId="es" Use="False" />
+		<models:Language Id="swe" ImgPos="738" Name="Swedish" ShortId="sv" Use="False" />
+		<models:Language Id="tgl" ImgPos="954" Name="Tagalog" ShortId="tl" Use="False" />
+		<models:Language Id="tha" ImgPos="756" Name="Thai" ShortId="th"  Use="False"/>
+		<models:Language Id="tur" ImgPos="774" Name="Turkish" ShortId="tr"  Use="False"/>
+		<models:Language Id="ukr" ImgPos="792" Name="Ukrainian" ShortId="uk"  Use="False"/>
+		<models:Language Id="vie" ImgPos="810" Name="Vietnamese" ShortId="vi"  Use="False"/>
+		<models:Language Id="rum" ImgPos="630" Name="Romanian" ShortId="ro"  Use="False"/>
+		<models:Language Id="pob" ImgPos="576" Name="Brazilian" ShortId="pb"  Use="False"/>
+
+
+	</models:LanguageCollection>
+
+
+</ResourceDictionary>

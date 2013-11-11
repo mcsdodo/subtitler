@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Net.Http.WebRequest.4.0.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:System.Net.Http.Fakes.ShimWebRequestHandler">
+            <summary>Shim type of System.Net.Http.WebRequestHandler</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.ShimWebRequestHandler.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.ShimWebRequestHandler.#ctor(System.Net.Http.WebRequestHandler)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.ShimWebRequestHandler.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.ShimWebRequestHandler.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.ShimWebRequestHandler.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllowPipeliningGet">
+            <summary>Sets the shim of WebRequestHandler.get_AllowPipelining()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllowPipeliningSetBoolean">
+            <summary>Sets the shim of WebRequestHandler.set_AllowPipelining(Boolean value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AuthenticationLevelGet">
+            <summary>Sets the shim of WebRequestHandler.get_AuthenticationLevel()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AuthenticationLevelSetAuthenticationLevel">
+            <summary>Sets the shim of WebRequestHandler.set_AuthenticationLevel(AuthenticationLevel value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.CachePolicyGet">
+            <summary>Sets the shim of WebRequestHandler.get_CachePolicy()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.CachePolicySetRequestCachePolicy">
+            <summary>Sets the shim of WebRequestHandler.set_CachePolicy(RequestCachePolicy value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ClientCertificatesGet">
+            <summary>Sets the shim of WebRequestHandler.get_ClientCertificates()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.Constructor">
+            <summary>Sets the shim of WebRequestHandler.WebRequestHandler()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ContinueTimeoutGet">
+            <summary>Sets the shim of WebRequestHandler.get_ContinueTimeout()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ContinueTimeoutSetTimeSpan">
+            <summary>Sets the shim of WebRequestHandler.set_ContinueTimeout(TimeSpan value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ImpersonationLevelGet">
+            <summary>Sets the shim of WebRequestHandler.get_ImpersonationLevel()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ImpersonationLevelSetTokenImpersonationLevel">
+            <summary>Sets the shim of WebRequestHandler.set_ImpersonationLevel(TokenImpersonationLevel value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.InitializeWebRequestHttpRequestMessageHttpWebRequest">
+            <summary>Sets the shim of WebRequestHandler.InitializeWebRequest(HttpRequestMessage request, HttpWebRequest webRequest)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.MaxResponseHeadersLengthGet">
+            <summary>Sets the shim of WebRequestHandler.get_MaxResponseHeadersLength()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.MaxResponseHeadersLengthSetInt32">
+            <summary>Sets the shim of WebRequestHandler.set_MaxResponseHeadersLength(Int32 value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ReadWriteTimeoutGet">
+            <summary>Sets the shim of WebRequestHandler.get_ReadWriteTimeout()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ReadWriteTimeoutSetInt32">
+            <summary>Sets the shim of WebRequestHandler.set_ReadWriteTimeout(Int32 value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ServerCertificateValidationCallbackGet">
+            <summary>Sets the shim of WebRequestHandler.get_ServerCertificateValidationCallback()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.ServerCertificateValidationCallbackSetRemoteCertificateValidationCallback">
+            <summary>Sets the shim of WebRequestHandler.set_ServerCertificateValidationCallback(RemoteCertificateValidationCallback value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.UnsafeAuthenticatedConnectionSharingGet">
+            <summary>Sets the shim of WebRequestHandler.get_UnsafeAuthenticatedConnectionSharing()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.UnsafeAuthenticatedConnectionSharingSetBoolean">
+            <summary>Sets the shim of WebRequestHandler.set_UnsafeAuthenticatedConnectionSharing(Boolean value)</summary>
+        </member>
+        <member name="T:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.AllowPipeliningGet">
+            <summary>Sets the shim of WebRequestHandler.get_AllowPipelining()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.AllowPipeliningSetBoolean">
+            <summary>Sets the shim of WebRequestHandler.set_AllowPipelining(Boolean value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.AuthenticationLevelGet">
+            <summary>Sets the shim of WebRequestHandler.get_AuthenticationLevel()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.AuthenticationLevelSetAuthenticationLevel">
+            <summary>Sets the shim of WebRequestHandler.set_AuthenticationLevel(AuthenticationLevel value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.CachePolicyGet">
+            <summary>Sets the shim of WebRequestHandler.get_CachePolicy()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.CachePolicySetRequestCachePolicy">
+            <summary>Sets the shim of WebRequestHandler.set_CachePolicy(RequestCachePolicy value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ClientCertificatesGet">
+            <summary>Sets the shim of WebRequestHandler.get_ClientCertificates()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ContinueTimeoutGet">
+            <summary>Sets the shim of WebRequestHandler.get_ContinueTimeout()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ContinueTimeoutSetTimeSpan">
+            <summary>Sets the shim of WebRequestHandler.set_ContinueTimeout(TimeSpan value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ImpersonationLevelGet">
+            <summary>Sets the shim of WebRequestHandler.get_ImpersonationLevel()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ImpersonationLevelSetTokenImpersonationLevel">
+            <summary>Sets the shim of WebRequestHandler.set_ImpersonationLevel(TokenImpersonationLevel value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.InitializeWebRequestHttpRequestMessageHttpWebRequest">
+            <summary>Sets the shim of WebRequestHandler.InitializeWebRequest(HttpRequestMessage request, HttpWebRequest webRequest)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.MaxResponseHeadersLengthGet">
+            <summary>Sets the shim of WebRequestHandler.get_MaxResponseHeadersLength()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.MaxResponseHeadersLengthSetInt32">
+            <summary>Sets the shim of WebRequestHandler.set_MaxResponseHeadersLength(Int32 value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ReadWriteTimeoutGet">
+            <summary>Sets the shim of WebRequestHandler.get_ReadWriteTimeout()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ReadWriteTimeoutSetInt32">
+            <summary>Sets the shim of WebRequestHandler.set_ReadWriteTimeout(Int32 value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ServerCertificateValidationCallbackGet">
+            <summary>Sets the shim of WebRequestHandler.get_ServerCertificateValidationCallback()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.ServerCertificateValidationCallbackSetRemoteCertificateValidationCallback">
+            <summary>Sets the shim of WebRequestHandler.set_ServerCertificateValidationCallback(RemoteCertificateValidationCallback value)</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.UnsafeAuthenticatedConnectionSharingGet">
+            <summary>Sets the shim of WebRequestHandler.get_UnsafeAuthenticatedConnectionSharing()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.ShimWebRequestHandler.AllInstances.UnsafeAuthenticatedConnectionSharingSetBoolean">
+            <summary>Sets the shim of WebRequestHandler.set_UnsafeAuthenticatedConnectionSharing(Boolean value)</summary>
+        </member>
+        <member name="T:System.Net.Http.Fakes.StubWebRequestHandler">
+            <summary>Stub type of System.Net.Http.WebRequestHandler</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.StubWebRequestHandler.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.StubWebRequestHandler.Dispose(System.Boolean)">
+            <summary>Sets the stub of HttpClientHandler.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="F:System.Net.Http.Fakes.StubWebRequestHandler.DisposeBoolean">
+            <summary>Sets the stub of HttpClientHandler.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.StubWebRequestHandler.InitializeStub">
+            <summary>Initializes a new instance of type StubWebRequestHandler</summary>
+        </member>
+        <member name="M:System.Net.Http.Fakes.StubWebRequestHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>Sets the stub of HttpClientHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)</summary>
+        </member>
+        <member name="F:System.Net.Http.Fakes.StubWebRequestHandler.SendAsyncHttpRequestMessageCancellationToken">
+            <summary>Sets the stub of HttpClientHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)</summary>
+        </member>
+        <member name="F:System.Net.Http.Fakes.StubWebRequestHandler.SupportsAutomaticDecompressionGet">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsAutomaticDecompression()</summary>
+        </member>
+        <member name="F:System.Net.Http.Fakes.StubWebRequestHandler.SupportsProxyGet">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsProxy()</summary>
+        </member>
+        <member name="F:System.Net.Http.Fakes.StubWebRequestHandler.SupportsRedirectConfigurationGet">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsRedirectConfiguration()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.SupportsAutomaticDecompression">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsAutomaticDecompression()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.SupportsProxy">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsProxy()</summary>
+        </member>
+        <member name="P:System.Net.Http.Fakes.StubWebRequestHandler.SupportsRedirectConfiguration">
+            <summary>Sets the stub of HttpClientHandler.get_SupportsRedirectConfiguration()</summary>
+        </member>
+    </members>
+</doc>

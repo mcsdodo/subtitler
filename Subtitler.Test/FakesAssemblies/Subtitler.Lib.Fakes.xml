@@ -1,0 +1,827 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Subtitler.Lib.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper">
+            <summary>Shim type of Subtitler.Lib.Helpers.ArgumentsHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.ParseArgumentsStringArray">
+            <summary>Sets the shim of ArgumentsHelper.ParseArguments(String[] args)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper">
+            <summary>Shim type of Subtitler.Lib.Helpers.ConnectionHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimConnectionHelper.CheckConnectionString">
+            <summary>Sets the shim of ConnectionHelper.CheckConnection(String URL)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper">
+            <summary>Shim type of Subtitler.Lib.Helpers.DownloadHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.#ctor(Subtitler.Lib.Helpers.DownloadHelper)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.ConstructorStringStringStringBoolean">
+            <summary>Sets the shim of DownloadHelper.DownloadHelper(String url, String directory, String newName, Boolean extract)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.DownloadFileAsyncAction">
+            <summary>Sets the shim of DownloadHelper.DownloadFileAsync(Action callback)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.DownloadFileStringStringStringBoolean">
+            <summary>Sets the shim of DownloadHelper.DownloadFile(String url, String directory, String newSubtitleFileName, Boolean extract)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.ResolveFileNameFromHeadersWebHeaderCollection">
+            <summary>Sets the shim of DownloadHelper.ResolveFileNameFromHeaders(WebHeaderCollection responseHeaders)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimDownloadHelper.AllInstances.DownloadFileAsyncAction">
+            <summary>Sets the shim of DownloadHelper.DownloadFileAsync(Action callback)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimFileHelper">
+            <summary>Shim type of Subtitler.Lib.Helpers.FileHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.ExtractArchiveStringString">
+            <summary>Sets the shim of FileHelper.ExtractArchive(String archivePath, String outPath)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.StripExtensionString">
+            <summary>Sets the shim of FileHelper.StripExtension(String name)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.WriteFileFromBytesStringByteArray">
+            <summary>Sets the shim of FileHelper.WriteFileFromBytes(String outPath, Byte[] byteArray)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimFileHelper.WriteFileFromStreamStreamString">
+            <summary>Sets the shim of FileHelper.WriteFileFromStream(Stream rawStream, String destination)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper">
+            <summary>Shim type of Subtitler.Lib.Helpers.RandomHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandItemOf1ListOfM0``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{System.Collections.Generic.List{``0},``0})">
+            <summary>Sets the shim of RandomHelper.RandItem(List`1&lt;!!0&gt; list)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper._RandItemb__0Of1M0``1(Microsoft.QualityTools.Testing.Fakes.FakesDelegates.Func{``0,System.Guid})">
+            <summary>Sets the shim of RandomHelper.&lt;RandItem&gt;b__0(!!0 s)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomBool">
+            <summary>Sets the shim of RandomHelper.RandomBool()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomColor">
+            <summary>Sets the shim of RandomHelper.RandomColor()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomDate">
+            <summary>Sets the shim of RandomHelper.RandomDate()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomDateDateTimeDateTime">
+            <summary>Sets the shim of RandomHelper.RandomDate(DateTime from, DateTime to)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomDouble">
+            <summary>Sets the shim of RandomHelper.RandomDouble()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomIntInt32Int32">
+            <summary>Sets the shim of RandomHelper.RandomInt(Int32 min, Int32 max)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomNumberInt32Int32Int32">
+            <summary>Sets the shim of RandomHelper.RandomNumber(Int32 min, Int32 max, Int32 digits)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.RandomStringInt32Boolean">
+            <summary>Sets the shim of RandomHelper.RandomString(Int32 size, Boolean lowerCase)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.ShimRandomHelper.StaticConstructor">
+            <summary>Sets the shim of RandomHelper.RandomHelper()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper">
+            <summary>Stub type of Subtitler.Lib.Helpers.DownloadHelper</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper.#ctor(System.String,System.String,System.String,System.Boolean)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper.InitializeStub">
+            <summary>Initializes a new instance of type StubDownloadHelper</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.Helpers.Fakes.StubDownloadHelper.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.LogInResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.#ctor(Subtitler.Lib.OpenSubtitles.LogInResult)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.Constructor">
+            <summary>Sets the shim of LogInResult.LogInResult()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogInResult.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.LogOutResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.#ctor(Subtitler.Lib.OpenSubtitles.LogOutResult)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.Constructor">
+            <summary>Sets the shim of LogOutResult.LogOutResult()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimLogOutResult.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.OpensubtitlesConnector</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.#ctor(Subtitler.Lib.OpenSubtitles.OpensubtitlesConnector)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.Bind(Subtitler.Lib.OpenSubtitles.IConnector)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.CheckLogin">
+            <summary>Sets the shim of OpensubtitlesConnector.CheckLogin()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.ConstructorString">
+            <summary>Sets the shim of OpensubtitlesConnector.OpensubtitlesConnector(String serverUrl)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.CreateSearchParamsStringStringArray">
+            <summary>Sets the shim of OpensubtitlesConnector.CreateSearchParams(String filePath, String[] languages)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.LogIn">
+            <summary>Sets the shim of OpensubtitlesConnector.LogIn()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.LogOut">
+            <summary>Sets the shim of OpensubtitlesConnector.LogOut()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.LoggedInGet">
+            <summary>Sets the shim of OpensubtitlesConnector.get_LoggedIn()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.LoggedInSetBoolean">
+            <summary>Sets the shim of OpensubtitlesConnector.set_LoggedIn(Boolean value)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.ParseStatusString">
+            <summary>Sets the shim of OpensubtitlesConnector.ParseStatus(String status)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.ParseStatusXmlRpcStruct">
+            <summary>Sets the shim of OpensubtitlesConnector.ParseStatus(XmlRpcStruct response)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.SearchSubtitlesStringStringArray">
+            <summary>Sets the shim of OpensubtitlesConnector.SearchSubtitles(String file, String[] languages)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.CheckLogin">
+            <summary>Sets the shim of OpensubtitlesConnector.CheckLogin()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.LogIn">
+            <summary>Sets the shim of OpensubtitlesConnector.LogIn()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.LogOut">
+            <summary>Sets the shim of OpensubtitlesConnector.LogOut()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.LoggedInGet">
+            <summary>Sets the shim of OpensubtitlesConnector.get_LoggedIn()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.LoggedInSetBoolean">
+            <summary>Sets the shim of OpensubtitlesConnector.set_LoggedIn(Boolean value)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimOpensubtitlesConnector.AllInstances.SearchSubtitlesStringStringArray">
+            <summary>Sets the shim of OpensubtitlesConnector.SearchSubtitles(String file, String[] languages)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.SearchParams</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.#ctor(Subtitler.Lib.OpenSubtitles.SearchParams)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.Constructor">
+            <summary>Sets the shim of SearchParams.SearchParams()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParams.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.SearchParamsExtended</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.#ctor(Subtitler.Lib.OpenSubtitles.SearchParamsExtended)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.Constructor">
+            <summary>Sets the shim of SearchParamsExtended.SearchParamsExtended()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchParamsExtended.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult">
+            <summary>Shim type of Subtitler.Lib.OpenSubtitles.SearchResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.#ctor(Subtitler.Lib.OpenSubtitles.SearchResult)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.Constructor">
+            <summary>Sets the shim of SearchResult.SearchResult()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.ParseEntryArray">
+            <summary>Sets the shim of SearchResult.ParseEntry(Array subtitles)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.ParseResponseXmlRpcStruct">
+            <summary>Sets the shim of SearchResult.ParseResponse(XmlRpcStruct response)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.ShimSearchResult.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.IConnector</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.#ctor">
+            <summary>Initializes a new instance of type StubIConnector</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.LogIn">
+            <summary>Sets the stub of IConnector.LogIn()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.LogOut">
+            <summary>Sets the stub of IConnector.LogOut()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.SearchSubtitlesStringStringArray">
+            <summary>Sets the stub of IConnector.SearchSubtitles(String file, String[] languages)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.sl::Subtitler#Lib#OpenSubtitles#IConnector#LogIn">
+            <summary>Sets the stub of IConnector.LogIn()</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.sl::Subtitler#Lib#OpenSubtitles#IConnector#LogOut">
+            <summary>Sets the stub of IConnector.LogOut()</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIConnector.sl::Subtitler#Lib#OpenSubtitles#IConnector#SearchSubtitles(System.String,System.String[])">
+            <summary>Sets the stub of IConnector.SearchSubtitles(String file, String[] languages)</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.IOpensubtitlesProxy</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.#ctor">
+            <summary>Initializes a new instance of type StubIOpensubtitlesProxy</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AllowAutoRedirectGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_AllowAutoRedirect()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AllowAutoRedirectSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_AllowAutoRedirect(Boolean value)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToAllowAutoRedirect">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.AllowAutoRedirect as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToConnectionGroupName">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.ConnectionGroupName as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToCredentials">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Credentials as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToEnableCompression">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.EnableCompression as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToExpect100Continue">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Expect100Continue as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToIndentation">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Indentation as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToKeepAlive">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.KeepAlive as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToNonStandard">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.NonStandard as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToPreAuthenticate">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.PreAuthenticate as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToProtocolVersion">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.ProtocolVersion as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToProxy">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Proxy as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToTimeout">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Timeout as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUrl">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.Url as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUseEmptyParamsTag">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.UseEmptyParamsTag as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUseIndentation">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.UseIndentation as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUseIntTag">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.UseIntTag as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUseStringTag">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.UseStringTag as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToUserAgent">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.UserAgent as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToXmlEncoding">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.XmlEncoding as a property with a backing field.</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.AttachBackingFieldToXmlRpcMethod">
+            <summary>Attaches delegates to emulate StubIOpensubtitlesProxy.XmlRpcMethod as a property with a backing field.</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ClientCertificatesGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_ClientCertificates()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ConnectionGroupNameGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_ConnectionGroupName()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ConnectionGroupNameSetString">
+            <summary>Sets the stub of IXmlRpcProxy.set_ConnectionGroupName(String value)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#SystemListMethods">
+            <summary>Sets the stub of IXmlRpcProxy.SystemListMethods()</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#SystemMethodHelp(System.String)">
+            <summary>Sets the stub of IXmlRpcProxy.SystemMethodHelp(String MethodName)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#SystemMethodSignature(System.String)">
+            <summary>Sets the stub of IXmlRpcProxy.SystemMethodSignature(String MethodName)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.CookieContainerGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_CookieContainer()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.CredentialsGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Credentials()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.CredentialsSetICredentials">
+            <summary>Sets the stub of IXmlRpcProxy.set_Credentials(ICredentials value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.EnableCompressionGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_EnableCompression()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.EnableCompressionSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_EnableCompression(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.Expect100ContinueGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Expect100Continue()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.Expect100ContinueSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_Expect100Continue(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.HeadersGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Headers()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.IdGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Id()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.IndentationGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Indentation()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.IndentationSetInt32">
+            <summary>Sets the stub of IXmlRpcProxy.set_Indentation(Int32 value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.KeepAliveGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_KeepAlive()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.KeepAliveSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_KeepAlive(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.LogInStringStringStringString">
+            <summary>Sets the stub of IOpensubtitlesProxy.LogIn(String userName, String password, String language, String userAgent)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.LogOutString">
+            <summary>Sets the stub of IOpensubtitlesProxy.LogOut(String token)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.NonStandardGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_NonStandard()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.NonStandardSetXmlRpcNonStandard">
+            <summary>Sets the stub of IXmlRpcProxy.set_NonStandard(XmlRpcNonStandard value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.PreAuthenticateGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_PreAuthenticate()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.PreAuthenticateSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_PreAuthenticate(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ProtocolVersionGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_ProtocolVersion()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ProtocolVersionSetVersion">
+            <summary>Sets the stub of IXmlRpcProxy.set_ProtocolVersion(Version value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ProxyGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Proxy()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ProxySetIWebProxy">
+            <summary>Sets the stub of IXmlRpcProxy.set_Proxy(IWebProxy value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ResponseCookiesGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_ResponseCookies()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ResponseHeadersGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_ResponseHeaders()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.SearchSubtitlesStringSearchParamsArray">
+            <summary>Sets the stub of IOpensubtitlesProxy.SearchSubtitles(String token, SearchParams[] searchParams)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.sl::Subtitler#Lib#OpenSubtitles#IOpensubtitlesProxy#LogIn(System.String,System.String,System.String,System.String)">
+            <summary>Sets the stub of IOpensubtitlesProxy.LogIn(String userName, String password, String language, String userAgent)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.sl::Subtitler#Lib#OpenSubtitles#IOpensubtitlesProxy#LogOut(System.String)">
+            <summary>Sets the stub of IOpensubtitlesProxy.LogOut(String token)</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.sl::Subtitler#Lib#OpenSubtitles#IOpensubtitlesProxy#SearchSubtitles(System.String,Subtitler.Lib.OpenSubtitles.SearchParams[])">
+            <summary>Sets the stub of IOpensubtitlesProxy.SearchSubtitles(String token, SearchParams[] searchParams)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.SystemListMethods">
+            <summary>Sets the stub of IXmlRpcProxy.SystemListMethods()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.SystemMethodHelpString">
+            <summary>Sets the stub of IXmlRpcProxy.SystemMethodHelp(String MethodName)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.SystemMethodSignatureString">
+            <summary>Sets the stub of IXmlRpcProxy.SystemMethodSignature(String MethodName)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.TimeoutGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Timeout()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.TimeoutSetInt32">
+            <summary>Sets the stub of IXmlRpcProxy.set_Timeout(Int32 value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UrlGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_Url()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UrlSetString">
+            <summary>Sets the stub of IXmlRpcProxy.set_Url(String value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseEmptyParamsTagGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseEmptyParamsTag()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseEmptyParamsTagSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_UseEmptyParamsTag(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseIndentationGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseIndentation()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseIndentationSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_UseIndentation(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseIntTagGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseIntTag()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseIntTagSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_UseIntTag(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseStringTagGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseStringTag()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UseStringTagSetBoolean">
+            <summary>Sets the stub of IXmlRpcProxy.set_UseStringTag(Boolean value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UserAgentGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_UserAgent()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.UserAgentSetString">
+            <summary>Sets the stub of IXmlRpcProxy.set_UserAgent(String value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.XmlEncodingGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_XmlEncoding()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.XmlEncodingSetEncoding">
+            <summary>Sets the stub of IXmlRpcProxy.set_XmlEncoding(Encoding value)</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.XmlRpcMethodGet">
+            <summary>Sets the stub of IXmlRpcProxy.get_XmlRpcMethod()</summary>
+        </member>
+        <member name="F:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.XmlRpcMethodSetString">
+            <summary>Sets the stub of IXmlRpcProxy.set_XmlRpcMethod(String value)</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#AllowAutoRedirect">
+            <summary>Sets the stub of IXmlRpcProxy.get_AllowAutoRedirect()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#ClientCertificates">
+            <summary>Sets the stub of IXmlRpcProxy.get_ClientCertificates()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#ConnectionGroupName">
+            <summary>Sets the stub of IXmlRpcProxy.get_ConnectionGroupName()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#CookieContainer">
+            <summary>Sets the stub of IXmlRpcProxy.get_CookieContainer()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Credentials">
+            <summary>Sets the stub of IXmlRpcProxy.get_Credentials()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#EnableCompression">
+            <summary>Sets the stub of IXmlRpcProxy.get_EnableCompression()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Expect100Continue">
+            <summary>Sets the stub of IXmlRpcProxy.get_Expect100Continue()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Headers">
+            <summary>Sets the stub of IXmlRpcProxy.get_Headers()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Id">
+            <summary>Sets the stub of IXmlRpcProxy.get_Id()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Indentation">
+            <summary>Sets the stub of IXmlRpcProxy.get_Indentation()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#KeepAlive">
+            <summary>Sets the stub of IXmlRpcProxy.get_KeepAlive()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#NonStandard">
+            <summary>Sets the stub of IXmlRpcProxy.get_NonStandard()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#PreAuthenticate">
+            <summary>Sets the stub of IXmlRpcProxy.get_PreAuthenticate()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#ProtocolVersion">
+            <summary>Sets the stub of IXmlRpcProxy.get_ProtocolVersion()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Proxy">
+            <summary>Sets the stub of IXmlRpcProxy.get_Proxy()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#ResponseCookies">
+            <summary>Sets the stub of IXmlRpcProxy.get_ResponseCookies()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#ResponseHeaders">
+            <summary>Sets the stub of IXmlRpcProxy.get_ResponseHeaders()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Timeout">
+            <summary>Sets the stub of IXmlRpcProxy.get_Timeout()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#Url">
+            <summary>Sets the stub of IXmlRpcProxy.get_Url()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#UseEmptyParamsTag">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseEmptyParamsTag()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#UseIndentation">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseIndentation()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#UseIntTag">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseIntTag()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#UseStringTag">
+            <summary>Sets the stub of IXmlRpcProxy.get_UseStringTag()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#UserAgent">
+            <summary>Sets the stub of IXmlRpcProxy.get_UserAgent()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#XmlEncoding">
+            <summary>Sets the stub of IXmlRpcProxy.get_XmlEncoding()</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubIOpensubtitlesProxy.ccxrv2::CookComputing#XmlRpc#IXmlRpcProxy#XmlRpcMethod">
+            <summary>Sets the stub of IXmlRpcProxy.get_XmlRpcMethod()</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubIResult">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.IResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubIResult.#ctor">
+            <summary>Initializes a new instance of type StubIResult</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.LogInResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult.InitializeStub">
+            <summary>Initializes a new instance of type StubLogInResult</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogInResult.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.LogOutResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult.InitializeStub">
+            <summary>Initializes a new instance of type StubLogOutResult</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubLogOutResult.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.OpensubtitlesConnector</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector.#ctor(System.String)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector.InitializeStub">
+            <summary>Initializes a new instance of type StubOpensubtitlesConnector</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubOpensubtitlesConnector.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.SearchParams</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams.InitializeStub">
+            <summary>Initializes a new instance of type StubSearchParams</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParams.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.SearchParamsExtended</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended.InitializeStub">
+            <summary>Initializes a new instance of type StubSearchParamsExtended</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchParamsExtended.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult">
+            <summary>Stub type of Subtitler.Lib.OpenSubtitles.SearchResult</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult.InitializeStub">
+            <summary>Initializes a new instance of type StubSearchResult</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Subtitler.Lib.OpenSubtitles.Fakes.StubSearchResult.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,8 @@
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate stub for Subtitler.Lib.Helpers.ArgumentsHelper: type is sealed.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate stub for Subtitler.Lib.Helpers.ConnectionHelper: type is sealed.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate stub for Subtitler.Lib.Helpers.FileHelper: type is sealed.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate stub for Subtitler.Lib.Helpers.RandomHelper: type is sealed.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate shim for Subtitler.Lib.Helpers.DownloadHelper+<>c__DisplayClass2: type is not supported because of internal limitations.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate shim for Subtitler.Lib.OpenSubtitles.IConnector: type is an interface.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate shim for Subtitler.Lib.OpenSubtitles.IOpensubtitlesProxy: type is an interface.
+C:\Users\Jozef\SkyDrive\work\Subtitler\Subtitler.Test\Fakes\Subtitler.Lib.fakes : warning : Cannot generate shim for Subtitler.Lib.OpenSubtitles.IResult: type is an interface.
