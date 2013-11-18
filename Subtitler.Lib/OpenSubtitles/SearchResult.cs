@@ -17,38 +17,32 @@ namespace Subtitler.Lib.OpenSubtitles
 		public string SubtitlesLink;
 		public string ZipDownloadLink;
 		public string MovieYear;
+	}
 
-		private static IEnumerable<SearchResult> ParseEntry(Array subtitles)
-		{
-			var results = new List<SearchResult>();
-			foreach (XmlRpcStruct subtitle in subtitles)
-			{
-				results.Add(new SearchResult()
-					{
-						IDMovieImdb = (string)subtitle["IDMovieImdb"],
-						LanguageName = (string)subtitle["LanguageName"],
-						MovieImdbRating = (string)subtitle["MovieImdbRating"],
-						MovieName = (string)subtitle["MovieName"],
-						SubDownloadLink = (string)subtitle["SubDownloadLink"],
-						SubFileName = (string)subtitle["SubFileName"],
-						SubLanguageID = (string)subtitle["SubLanguageID"],
-						SubtitlesLink = (string)subtitle["SubtitlesLink"],
-						MovieReleaseName = (string)subtitle["MovieReleaseName"],
-						MovieYear = (string)subtitle["MovieYear"],
-						ZipDownloadLink = (string)subtitle["ZipDownloadLink"]
-					});
-			}
-			return results;
-		}
+	public static class Status
+	{
+		public const string OK = "200 OK";
+		public const string PartialOK = "206 Partial content; message";
 
-		public static IEnumerable<SearchResult> ParseResponse(XmlRpcStruct response)
-		{
-			var results = new List<SearchResult>();
+		public const string Moved = "301 Moved (host)";
 
-			if (response.ContainsKey("data") && !(response["data"] is bool))
-				results.AddRange(ParseEntry(response["data"] as Array));
+		public const string E401 = "401 Unauthorized";
+		public const string E402 = "402 Subtitles has invalid format";
+		public const string E403 = "403 SubHashes (content and sent subhash) are not same!";
+		public const string E404 = "404 Subtitles has invalid language!";
+		public const string E405 = "405 Not all mandatory parameters was specified";
+		public const string E406 = "406 No session";
+		public const string E407 = "407 Download limit reached";
+		public const string E408 = "408 Invalid parameters";
+		public const string E409 = "409 Method not found";
+		public const string E410 = "410 Other or unknown error";
+		public const string E411 = "411 Empty or invalid useragent";
+		public const string E412 = "412 %s has invalid format (reason)";
+		public const string E413 = "413 Invalid ImdbID";
+		public const string E414 = "414 Unknown User Agent";
+		public const string E415 = "415 Disabled user agent";
+		public const string E416 = "416 Internal subtitle validation failed";
 
-			return results;
-		}
+		public const string E503 = "503 Service Unavailable";
 	}
 }

@@ -6,6 +6,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	mc:Ignorable="d"				  
 		xmlns:properties="clr-namespace:Subtitler.Desktop.Properties"
 		xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+		
 		xmlns:viewModels="clr-namespace:Subtitler.Desktop.ViewModels"
 		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 		xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
@@ -13,10 +14,10 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:views="clr-namespace:Subtitler.Desktop.Views"
 		xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
 		xmlns:subtitler="clr-namespace:Subtitler"
-
+		xmlns:subtitlerControls="clr-namespace:Subtitler.Desktop.Controls"
 					
 		Title="Subtitler" x:Name="Window"
-        WindowStartupLocation="CenterScreen" Height="300" Width="300" ResizeMode="CanMinimize" SizeToContent="Width" ShowIconOnTitleBar="True">
+        WindowStartupLocation="CenterScreen" Height="350" Width="400" ResizeMode="CanMinimize" SizeToContent="Manual" ShowIconOnTitleBar="True">
 	<controls:MetroWindow.Resources>
 		<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>
 	</controls:MetroWindow.Resources>
@@ -27,60 +28,71 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	<controls:MetroWindow.WindowCommands>
 		<controls:WindowCommands>
 			<Button Content="Settings" Cursor="Hand" Command="{Binding OpenSettings}"/>
-			<Button Content="About" Cursor="Hand" Click="ButtonBase_OnClick"/>
+			<Button Content="Reload" Cursor="Hand" Command="{Binding ReloadData}" />
+			<Button Content="Open file" Cursor="Hand" Command="{Binding OpenFile}" />
 		</controls:WindowCommands>
 	</controls:MetroWindow.WindowCommands>
-	
+
 	<controls:MetroWindow.Flyouts>
 		<controls:FlyoutsControl>
-			<views:SettingsFlyout Header="Settings" Position="Right" x:Name="SettingsFlyout" 
-								  IsOpen="{Binding IsSettingsFlyoutOpened}" Width="{Binding Width, ElementName=Window}"
-								  />
+			<views:SettingsFlyout Position="Right" x:Name="SettingsFlyout" IsOpen="{Binding IsSettingsFlyoutOpened}" Width="{Binding Width, ElementName=Window}" />
 		</controls:FlyoutsControl>
 	</controls:MetroWindow.Flyouts>
-	
+
 	<i:Interaction.Behaviors>
-		<!--<behaviours:BorderlessWindowBehavior></behaviours:BorderlessWindowBehavior>-->
+		<!--coto je ?-->
+		<behaviours:BorderlessWindowBehavior></behaviours:BorderlessWindowBehavior>
 	</i:Interaction.Behaviors>
-	
-	<Grid x:Name="MainGrid">
+
+	<Grid x:Name="MainGrid" >
+		<controls:ProgressRing IsActive="{Binding IsLoading}" Width="50" Height="50"/>
 		<!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">-->
-			<ListView x:Name="listv"  ItemsSource="{Binding SubtitlesCollection}" HorizontalContentAlignment="Stretch"
-					  Height="{Binding ElementName=MainGrid, Path=ActualHeight}"   >
-
-				<ListView.ContextMenu>
-					<ContextMenu>
-						<MenuItem Header="Download" Command="{Binding Download}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItems}"/>
-					</ContextMenu>
-				</ListView.ContextMenu>
-				<ListView.Resources>
-				</ListView.Resources>
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<Grid Margin="3 0 3 0" >
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*"></ColumnDefinition>
-								<ColumnDefinition Width="34"></ColumnDefinition>
-								<ColumnDefinition Width="18" ></ColumnDefinition>
-							</Grid.ColumnDefinitions>
-							<Label Content="{Binding SubFileName}" Grid.Column="0"></Label>
-							<Label Content="{Binding Language.Id}" Grid.Column="1" ></Label>
-							<Image Width="18" Height="12" Grid.Column="2" >
-								<Image.Source>
-									<!--<CroppedBitmap Source="..\Resources\allflags.gif" >
-										<CroppedBitmap.SourceRect>
-										<Int32Rect X="0" Y="0" Height="12" Width="18"></Int32Rect>
-										</CroppedBitmap.SourceRect>
-									</CroppedBitmap>-->
-									<CroppedBitmap Source="..\Resources\allflags.gif" SourceRect="{Binding Language.Rect}"  />
-								</Image.Source>
-							</Image>
-
-						</Grid>
-
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+		
+		<ListView x:Name="listv"  ItemsSource="{Binding SubtitlesCollection}" HorizontalContentAlignment="Stretch" Background="Transparent"
+					  Height="{Binding ElementName=MainGrid, Path=ActualHeight}" BorderThickness="0" BorderBrush="Transparent" >
+			<ListView.Style>
+				<Style TargetType="ListView">
+					<Style.Triggers>
+						<Trigger Property="HasItems" Value="False">
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate TargetType="ListView">
+										<TextBlock Text="No items found..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</ListView.Style>
+			<ListView.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="Download" Command="{Binding Download}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItems}"/>
+				</ContextMenu>
+			</ListView.ContextMenu>
+			<ListView.Resources>
+				
+			</ListView.Resources>
+			
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Grid MinHeight="40" Width="370">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="85*"></ColumnDefinition>
+							<ColumnDefinition Width="10*"></ColumnDefinition>
+							<ColumnDefinition Width="5*" ></ColumnDefinition>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding SubFileName}"  TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center"  />
+						<Label Content="{Binding Language.Id}" Grid.Column="1" VerticalAlignment="Center" />
+						<Image Width="18" Height="12" Grid.Column="2" VerticalAlignment="Center">
+							<Image.Source>
+								<CroppedBitmap Source="..\Resources\allflags.gif" SourceRect="{Binding Language.Rect}"  />
+							</Image.Source>
+						</Image>
+					</Grid>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
 		<!--</StackPanel>-->
 
 		<!--<Button Content="can execute command?"

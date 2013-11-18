@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Subtitler.Desktop.Annotations;
+using Subtitler.Desktop.Helpers;
 
 namespace Subtitler.Desktop.Views
 {
@@ -38,5 +39,6 @@ namespace Subtitler.Desktop.Views
 			PropertyChangedEventHandler handler = PropertyChanged;
 			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
 		}
+		
 	}
 }

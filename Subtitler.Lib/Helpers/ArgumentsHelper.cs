@@ -4,6 +4,9 @@ namespace Subtitler.Lib.Helpers
 {
 	public static class ArgumentsHelper
 	{
+		/// <summary>
+		/// returns arg entry from application arguments
+		/// </summary>
 		public static string ParseArguments(string[] args, string arg)
 		{
 			var arguments = new Dictionary<string, string>();

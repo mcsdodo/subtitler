@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 
 namespace Subtitler.Lib.Helpers
@@ -7,20 +9,26 @@ namespace Subtitler.Lib.Helpers
 	{
 		public static void ExtractArchive(string archivePath, string outPath)
 		{
-			using (FileStream fInStream = new FileStream(archivePath, FileMode.Open, FileAccess.Read))
+			try
 			{
-				using (GZipStream zipStream = new GZipStream(fInStream, CompressionMode.Decompress))
+				using (FileStream fInStream = new FileStream(archivePath, FileMode.Open, FileAccess.Read))
 				{
-					using (FileStream fOutStream = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+					using (GZipStream zipStream = new GZipStream(fInStream, CompressionMode.Decompress))
 					{
-						byte[] tempBytes = new byte[4096];
-						int i;
-						while ((i = zipStream.Read(tempBytes, 0, tempBytes.Length)) != 0)
+						using (FileStream fOutStream = new FileStream(outPath, FileMode.Create, FileAccess.Write))
 						{
-							fOutStream.Write(tempBytes, 0, i);
+							byte[] tempBytes = new byte[4096];
+							int i;
+							while ((i = zipStream.Read(tempBytes, 0, tempBytes.Length)) != 0)
+							{
+								fOutStream.Write(tempBytes, 0, i);
+							}
 						}
 					}
 				}
+			}
+			catch (Exception)
+			{
 			}
 		}
 
@@ -37,11 +45,27 @@ namespace Subtitler.Lib.Helpers
 			return name.Remove(name.LastIndexOf('.'));
 		}
 
+		public static string GetFileExtension(string name)
+		{
+			int lastIndexOfDot = name.LastIndexOf('.');
+			if (lastIndexOfDot > 1 && lastIndexOfDot < name.Length-1)
+			{
+				return name.Substring(lastIndexOfDot+1);
+			}
+			return null;
+		}
+
 		public static void WriteFileFromStream(Stream rawStream, string destination)
 		{
 			MemoryStream mStream = new MemoryStream();
 			rawStream.CopyTo(mStream);
 			File.WriteAllBytes(destination, mStream.ToArray());
+		}
+
+		public static bool IsFileTypeAllowed(string extension, string allowedExtensions)
+		{
+			var allowedList = new List<String>( allowedExtensions.Split(',') );
+			return allowedList.Contains(extension);
 		}
 	}
 }

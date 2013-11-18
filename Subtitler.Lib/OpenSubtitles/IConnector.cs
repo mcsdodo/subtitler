@@ -1,4 +1,5 @@
-﻿using CookComputing.XmlRpc;
+﻿using System.Collections.Generic;
+using CookComputing.XmlRpc;
 
 namespace Subtitler.Lib.OpenSubtitles
 {
@@ -6,6 +7,6 @@ namespace Subtitler.Lib.OpenSubtitles
 	{
 		void LogIn();
 		void LogOut();
-		XmlRpcStruct SearchSubtitles(string file, string[] languages);
+		IEnumerable<SearchResult> SearchSubtitles(string file, string[] languages);
 	}
 }

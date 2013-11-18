@@ -30,7 +30,7 @@
     <TargetCulture>en</TargetCulture>
     <ProductName>Subtitler</ProductName>
     <PublisherName>Dodo</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -82,6 +82,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Subtitler.Lib\bin\Debug\CookComputing.XmlRpcV2.dll</HintPath>
@@ -128,7 +134,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\INeedInternet.cs" />
+    <Compile Include="Controls\SubtitlerListView.cs" />
+    <Compile Include="DAL\IOService.cs" />
+    <Compile Include="DAL\IOServiceImpl.cs" />
+    <Compile Include="Helpers\AsyncExecutor.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\ISettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\SettingsWindowViewModel.cs" />
@@ -169,7 +180,7 @@
     <Compile Include="DAL\SubtitlesDataService.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="Models\Language.cs" />
-    <Compile Include="Models\MovieFile.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Subtitle.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

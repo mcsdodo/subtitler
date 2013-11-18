@@ -15,34 +15,44 @@ namespace Subtitler.Desktop.Models
 	{
 		private string _downloadLink;
 
+		#region ctor
+
+		public Subtitle(){}
+
 		public Subtitle(string subFileName, string langShort, string downloadZipLink)
 		{
 			SubFileName = subFileName;
-			Language = Language.GetLanguages().First(l => l.Id == langShort);
-			_downloadLink = downloadZipLink;
+			_language = Language.GetAllLanguages().First(l => l.Id == langShort);
+			ZipDownloadLink = downloadZipLink;
+		} 
+		#endregion
+
+
+		#region Properties
+
+		public string SubLanguageID { get; set; }
+		public string SubFileName { get; set; }
+		public string MovieName { get; set; }
+		public string IDMovieImdb { get; set; }
+		public string MovieImdbRating { get; set; }
+		public string LanguageName { get; set; }
+		public string MovieReleaseName { get; set; }
+		public string SubDownloadLink { get; set; }
+		public string SubtitlesLink { get; set; }
+		public string ZipDownloadLink { get; set; }
+		public string MovieYear { get; set; }
+
+		private Language _language;
+		public Language Language
+		{
+			get { return _language ?? (_language = Language.GetAllLanguages().First(l => l.Id == SubLanguageID)); }
 		}
 
-
-		private string _subFileName;
-		public string SubFileName
+		public void DownloadAsync(string directory, string fileName, bool unzip, Action callback)
 		{
-			get { return _subFileName; }
-			set
-			{
-				if (_subFileName != value)
-				{
-					_subFileName = value;
-					RaisePropertyChanged(() => SubFileName);
-				}
-			}
-		}
-
-		public Language Language { get; set; }
-
-		public void Download(string directory, string fileName, bool unzip, Action callback)
-		{
-			var dh = new DownloadHelper(_downloadLink, directory, fileName, unzip);
+			var dh = new DownloadHelper(ZipDownloadLink, directory, fileName, unzip);
 			dh.DownloadFileAsync(callback);
-		}	
+		} 
+		#endregion	
 	}
 }

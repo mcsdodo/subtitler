@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Subtitler.Desktop.Models
 {
-	public class MovieFile
+	public class Movie
 	{
 		public string Name { get; set; }
 		public string Directory { get; set; }
 		public string Extension { get; set; }
 		public string FullName { get; set; }
 
-		public static MovieFile ParseFile(string path)
+		public static Movie ParseFile(string path)
 		{
 			FileInfo info = new FileInfo(path);
-			return new MovieFile()
+			return new Movie()
 				{
 					FullName = info.Name,
 					Directory = info.Directory.FullName,

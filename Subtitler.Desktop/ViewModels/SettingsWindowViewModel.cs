@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
+using MahApps.Metro;
+using Microsoft.Practices.ServiceLocation;
 using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.Helpers;
@@ -17,33 +21,21 @@ namespace Subtitler.Desktop.ViewModels
 
 		#region Properties
 
-		private Settings _settings;
+		private ISettings _settings;
 
 		public bool ShouldRenameFile
 		{
 			get { return _settings.ShouldRenameFile; }
-			set
-			{
-				if (_settings.ShouldRenameFile != value)
-				{
-					_settings.ShouldRenameFile = value;
-					//RaisePropertyChanged(() => ShouldRenameFile);
-				}
-			}
+			set { _settings.ShouldRenameFile = value; }
 		}
 
 		public bool ShouldUnzipFile
 		{
 			get { return _settings.ShouldUnzipFile; }
-			set
-			{
-				if (_settings.ShouldUnzipFile != value)
-				{
-					_settings.ShouldUnzipFile = value;
-					//RaisePropertyChanged(() => ShouldUnzipFile);
-				}
-			}
+			set { _settings.ShouldUnzipFile = value; }
 		}
+
+
 
 		private LanguageCollection _languages;
 		public LanguageCollection Languages
@@ -56,19 +48,38 @@ namespace Subtitler.Desktop.ViewModels
 			}
 			set
 			{
-				//if (_settings.Languages != value)
-				//{
-					_settings.Languages = value;
-					//RaisePropertyChanged(() => Languages);
-				//}
+				_settings.Languages = value;
 			}
 		}
 		#endregion
 
-		public SettingsWindowViewModel()
-		{
-			_settings = new Settings();
+		#region Commands
+		public RelayCommand<object> ChangeTheme { get { return new RelayCommand<object>(OnChangeThemeCommand); } }
+		public RelayCommand<object> SelectLanguage { get { return new RelayCommand<object>(OnSelectLanguage);} }
 
+
+
+		#endregion
+
+		private void OnSelectLanguage(object obj)
+		{
+			
+		}
+
+		private void OnChangeThemeCommand(object args)
+		{
+			var check = (bool) args;
+			var theme = ThemeManager.DetectTheme(Application.Current);
+
+			var name = check ? "Cyan" : "Emerald";
+			var accent = ThemeManager.DefaultAccents.First(x => x.Name == name);
+			ThemeManager.ChangeTheme(Application.Current, accent, check ? Theme.Light : Theme.Dark);
+
+		}
+
+		public SettingsWindowViewModel(ISettings settings)
+		{
+			_settings = settings;
 			Languages.OnCollectionSave += sender =>
 			{
 				_settings.Languages = sender as LanguageCollection;

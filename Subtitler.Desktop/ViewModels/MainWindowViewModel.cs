@@ -1,28 +1,37 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
+using Microsoft.Practices.ServiceLocation;
 using Subtitler.Desktop.DAL;
 using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.Helpers;
+using Subtitler.Lib.OpenSubtitles;
 
 namespace Subtitler.Desktop.ViewModels
 {
 
 
-	public class MainWindowViewModel : SubtitlerViewModelBase, INeedInternet
+	public class MainWindowViewModel : SubtitlerViewModelBase
 	{
 		#region Properties
 
-		private ObservableCollection<Subtitle> _subtitlesCollection;
+		private ObservableCollection<Subtitle> _subtitlesCollection = new ObservableCollection<Subtitle>();
 		public ObservableCollection<Subtitle> SubtitlesCollection
 		{
 			get { return _subtitlesCollection; }
@@ -50,81 +59,112 @@ namespace Subtitler.Desktop.ViewModels
 			}
 		}
 
-
-		public bool ShouldRenameFile
+		private bool _isLoading;
+		public bool IsLoading
 		{
-			get { return (bool)Properties.Settings.Default["RenameFileAsSource"]; }
+			get { return _isLoading; }
+			set
+			{
+				if (_isLoading != value)
+				{
+					_isLoading = value;
+					RaisePropertyChanged(() => IsLoading);
+				}
+			}
 		}
 
-		public bool ShouldUnzipFile
+		private string _file;
+		public string File
 		{
-			get { return (bool)Properties.Settings.Default["UnzipFile"]; }
+			get { return _file; }
 		}
+
 		private IDataService _dataService;
+		private ISettings _settings;
+		private IOService _ioService;
 		private int _downloadFinishedCount = 0;
 		private int _totalDownloadCount = 0;
+		
+
 		#endregion
 
-		#region Commands
+		#region Commands and delegates
 		public ICommand DoNothingCommand { get { return new RelayCommand(OnDoNothing, CanExecuteDoNothing); } }
 		public RelayCommand<object> Download { get { return new RelayCommand<object>(OnDownloadCommand); } }
 		public RelayCommand OpenSettings { get { return new RelayCommand(OnShowSettings);} }
+		public RelayCommand ReloadData { get { return new RelayCommand(OnLoadData); } }
+		public RelayCommand OpenFile {get {return new RelayCommand(OnOpenFile);}}
 		#endregion
 
 		#region ctor
+
 		public bool HasInternet { get; set; }
-		public MainWindowViewModel(IDataService dataService)
+		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService)
 		{
 			_dataService = dataService;
+			_settings = settings;
+			_ioService = ioService;
+			_file = ArgumentsHelper.ParseArguments(Environment.GetCommandLineArgs(), "file");
+
+			_dataService.LogIn();
+
 			HasInternet = _dataService.CanConnect;
 
-			if (IsInDesignMode || IsInDesignModeStatic)
+			if (HasInternet)
 			{
-				LoadData();
+				LoadDataAsync(_file);
 			}
 			else
-			{
-				if (HasInternet)
-				{
-					LoadData();
-				}
-				else
-					DisplayNoConnectionErrorMessage();
-			}
-			
+				DisplayNoConnectionErrorMessage();
 		}
 
 		#endregion
 
 		#region Command Handlers
 
-		private void OnDownloadCommand(object param)
+		private void OnOpenFile()
 		{
-			var file = MovieFile.ParseFile(App.TestFile);
-			var selectedItems = (System.Collections.IList)param;
-			List<Subtitle> subtitles = selectedItems.Cast<Subtitle>().ToList();
+			_file = _ioService.OpenFileDialog("");
+			LoadDataAsync(_file);
+		}
+
+		private void OnDownloadCommand(object selectedSubtitles)
+		{
+			var file = Movie.ParseFile(_file);
+			var subtitles = ((System.Collections.IList)selectedSubtitles).Cast<Subtitle>().ToList();
 			_totalDownloadCount = subtitles.Count;
 
 			if (_totalDownloadCount > 1)
 			{
 				foreach (Subtitle subtitle in subtitles)
 				{
-					subtitle.Download(file.Directory, subtitle.SubFileName, ShouldUnzipFile, IncreaseCountOfFinishedDownloads);
+					subtitle.DownloadAsync(file.Directory, ResolveFinalFileName(subtitle.SubFileName, file.Name, false), _settings.ShouldUnzipFile,
+						callback:
+							() =>
+							{
+								_downloadFinishedCount++;
+								if (_downloadFinishedCount == _totalDownloadCount)
+								{
+									ShowMessage("", "All subtitles downloaded");
+								}
+							});
 				}
 			}
 			else
 			{
 				var subtitle = subtitles.Single();
-				subtitle.Download(file.Directory, ResolveFinalFileName(subtitle.SubFileName, file.Name), ShouldUnzipFile,
-					() => ShowMessage("", "Download finished."));
+				subtitle.DownloadAsync(file.Directory, ResolveFinalFileName(subtitle.SubFileName, file.Name, _settings.ShouldRenameFile), _settings.ShouldUnzipFile,
+					callback: () => ShowMessage("", "Download finished."));
 			}
-
-			
-			
 		}
 
 		private void OnDoNothing()
 		{
+		}
+
+		private void OnLoadData()
+		{
+			LoadDataAsync(_file);
 		}
 
 		private void OnShowSettings()
@@ -141,42 +181,54 @@ namespace Subtitler.Desktop.ViewModels
 
 		#region Other methods
 
-		private string ResolveFinalFileName(string subFileName, string movieFileName)
+		private string ResolveFinalFileName(string subFileName, string movieFileName, bool rename)
 		{
-			if (ShouldRenameFile)
+			if (rename)
 				return movieFileName;
 			else
 				return FileHelper.StripExtension(subFileName);
 		}
 
-		private void LoadData()
-		{
-			_dataService.LogIn();
-			SubtitlesCollection = new ObservableCollection<Subtitle>();
-			//var languages = new List<string>() { "ar", "bg", "cs", "ca", "da", "de", "en", "es", "et", "fa", "fi", "fr",  "el", "he", "hr", "hu", "id", "is", "it", "ja", "ka", "ko",  "mk", "nl", "no", "pb", "pl", "pt", "ro", "ru", "sk", "sl", "sq", "sr", "sv", "th", "tr", "uk", "vi", "zh", "gl", "ms", "oc", "si", "tl", "uk", "eu", "hi", "km" };
+		private void LoadDataAsync(string file)
+		{			
+			IsLoading = true;
 
-			var subtitles = _dataService.GetSubtitles(App.TestFile, new[] { "slo", "cze", "eng", "pol", "spa", "rus" });
-
-			foreach (Subtitle subtitle in subtitles)
+			using (var asyncExecutor = new AsyncExecutor())
 			{
-				SubtitlesCollection.Add(subtitle);
+				asyncExecutor.ExecuteTask(GetSubtitles, file);
+				asyncExecutor.OnExecutionComplete += PopulateSubtitleCollection;
 			}
-			_dataService.LogOut();
 		}
 
-		private void IncreaseCountOfFinishedDownloads()
+		private List<Subtitle> GetSubtitles(string file)
 		{
-			_downloadFinishedCount++;
-			if (_downloadFinishedCount == _totalDownloadCount)
+			var langs = _settings.Languages.Where(l => l.Use).Select(l => l.Id).ToArray();
+			return _dataService.GetSubtitles(file, langs);
+		}
+
+		private void PopulateSubtitleCollection(object parameters)
+		{
+			var subtitles = parameters as List<Subtitle>;
+			
+			if (subtitles.Count > 0)
 			{
-				ShowMessage("", "All subtitles downloaded");
+				SubtitlesCollection.Clear();
+				foreach (Subtitle subtitle in subtitles)
+				{
+					SubtitlesCollection.Add(subtitle);
+				}
+			}
+			else
+			{
+				SubtitlesCollection.Clear();
 			}
 			
+			IsLoading = false;
 		}
 
 		private void DisplayNoConnectionErrorMessage()
 		{
-			MessageBox.Show("No internet connection.", "Subtitler warning!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			ShowMessage("No internet connection.", "Warning!");
 		}
 
 		#endregion

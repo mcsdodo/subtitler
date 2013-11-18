@@ -50,14 +50,14 @@ namespace Subtitler.Desktop.Models
 	}
 
 	[Serializable]
-	public class Language //: ObservableObject
+	public class Language
 	{
 		public delegate void SaveCollectionHandler(object sender);
 		public event SaveCollectionHandler UsePropertyChanged;
 
 		public Language(){}
 
-		public static LanguageCollection GetLanguages()
+		public static LanguageCollection GetAllLanguages()
 		{
 			return Application.Current.Resources["LanguageCollection"] as LanguageCollection;
 		}
@@ -77,7 +77,6 @@ namespace Subtitler.Desktop.Models
 				if (_use != value)
 				{
 					_use = value;
-					//RaisePropertyChanged(() => Use);
 					if (UsePropertyChanged != null) UsePropertyChanged(this);
 				}
 			}

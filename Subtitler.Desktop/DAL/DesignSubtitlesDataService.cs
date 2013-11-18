@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Subtitler.Desktop.Helpers;
@@ -30,15 +31,21 @@ namespace Subtitler.Desktop.DAL
 
 		public List<Subtitle> GetSubtitles(string file, params string[] langs)
 		{
-			var allSettingsLangs = (new Settings()).Languages;
+			var SubtitleNames = new[] { "Two and a Half Men - 10x04 - You Do Know What The Lollipop Is For.LOL.Bulgarian.HI.C.updat.srt",
+				"Two.and.a.Half.Men..10x06..Ferrets,.Attack!.LOL.Bulgarian.HI.C.updated.Addic7ed.com.srt", "Two and a Half Men - 10x06 - Ferrets, Attack!.LOL.Bulgarian.HI.C.updated.Addic7ed.com.srt", 
+				"Two.and.a.Half.Men.S10E05.HDTV.x264-LOL.HI.srt", "Two and a Half Men - 10x06 - Ferrets, Attack!.LOL.Bulgarian.HI.C.updated.Addic7ed.com.srt", "Two.and.a.Half.Men.S10E06.HDTV.x264-LOL.srt" };
 
+
+			var allSettingsLangs = (new Settings()).Languages;
+			Thread.Sleep(2000);
 			var results = new List<Subtitle>();
-			for (var i = 0; i < 20; i++)
+			for (var i = 0; i < 200; i++)
 			{
-				var langShort = allSettingsLangs.Where(l => l.Use).ToList().RandItem().Id;
-				results.Add(new Subtitle(RandomHelper.RandomString(25, true), langShort, RandomHelper.RandomString(20, true)));
+				var langShort = allSettingsLangs.ToList().RandItem().Id;
+				var name = SubtitleNames.ToList().RandItem();
+				results.Add(new Subtitle(name, langShort, RandomHelper.RandomString(20, true)));
 			}
-			return results;
+			return results.Where(s => langs.Contains(s.Language.Id)).ToList();
 		}
 
 	}

@@ -9,7 +9,7 @@ using Subtitler.Desktop.Models;
 namespace Subtitler.Desktop.Helpers
 {
 	[Serializable]
-	public class Settings
+	public class Settings : ISettings
 	{
 		public bool ShouldRenameFile
 		{
@@ -23,19 +23,27 @@ namespace Subtitler.Desktop.Helpers
 			set { Properties.Settings.Default.UnzipFile = value; }
 		}
 
+		public string Theme
+		{
+			get { return Properties.Settings.Default.Theme; }
+			set { Properties.Settings.Default.Theme = value; }
+		}
+
 		private LanguageCollection _languages;
 		public LanguageCollection Languages
 		{
 			get
 			{
-				var languages = Properties.Settings.Default.Languages;
-				if (!string.IsNullOrEmpty(languages))
+				var langs = Properties.Settings.Default.Languages;
+				if (!string.IsNullOrEmpty(Properties.Settings.Default.Languages))
 				{
-					_languages = Deserialize<LanguageCollection>(languages);
-					return _languages;
-;				}
+					_languages = Deserialize<LanguageCollection>(langs);
+				}
 				else
-					return Language.GetLanguages();
+				{
+					_languages = Language.GetAllLanguages();
+				}
+				return _languages;
 			}
 
 			set { Properties.Settings.Default.Languages = Serialize(value); }

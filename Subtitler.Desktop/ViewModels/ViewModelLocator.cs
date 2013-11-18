@@ -12,10 +12,14 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using Subtitler.Desktop.DAL;
+using Subtitler.Desktop.Helpers;
+using Subtitler.Desktop.Models;
+using Subtitler.Lib.OpenSubtitles;
 
 namespace Subtitler.Desktop.ViewModels
 {
@@ -44,8 +48,11 @@ namespace Subtitler.Desktop.ViewModels
 				SimpleIoc.Default.Register<IDataService, DesignSubtitlesDataService>();
 			}
 
+			SimpleIoc.Default.Register<ISettings, Settings>();
+			SimpleIoc.Default.Register<IOService, IOServiceImpl>();
+
 			SimpleIoc.Default.Register<MainWindowViewModel>();
-			SimpleIoc.Default.Register<SettingsWindowViewModel>();
+			SimpleIoc.Default.Register<SettingsWindowViewModel>();			
         }
 
 		public MainWindowViewModel MainWindow
