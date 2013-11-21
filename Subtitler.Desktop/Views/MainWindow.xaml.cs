@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
@@ -39,6 +40,5 @@ namespace Subtitler.Desktop.Views
 		{
 			base.OnClosing(e);
 		}
-
 	}
 }

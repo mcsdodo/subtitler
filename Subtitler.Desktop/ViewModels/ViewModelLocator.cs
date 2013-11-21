@@ -44,8 +44,8 @@ namespace Subtitler.Desktop.ViewModels
 			else
 			{
 				// Create run time view services and models
-				//SimpleIoc.Default.Register<IDataService, SubtitlesDataService>();
-				SimpleIoc.Default.Register<IDataService, DesignSubtitlesDataService>();
+				SimpleIoc.Default.Register<IDataService, SubtitlesDataService>();
+				//SimpleIoc.Default.Register<IDataService, DesignSubtitlesDataService>();
 			}
 
 			SimpleIoc.Default.Register<ISettings, Settings>();

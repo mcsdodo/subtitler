@@ -59,18 +59,6 @@ namespace Subtitler.Desktop.Helpers
 			//OnExecutionComplete = null;
 			//todo ??
 		}
-
-		//AsyncResultsLoader resultsLoader = () => _dataService.GetSubtitles(App.TestFile, langs);
-
-		//AsyncCallback callback = asyncResult =>
-		//{
-		//	AsyncResultsLoader loader = (AsyncResultsLoader) ((AsyncResult) asyncResult).AsyncDelegate;
-		//	var subtitles = loader.EndInvoke(asyncResult);
-
-		//	PopulateCollection(subtitles);
-		//};
-
-		//resultsLoader.BeginInvoke(callback, null);
 	}
 
 

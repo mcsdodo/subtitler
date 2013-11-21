@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -65,6 +66,12 @@ namespace Subtitler.Lib.OpenSubtitles
 			LoggedIn = ParseStatus(response);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="file">Full path to movie file with allowed extension enumerated in config entry allowedExtensions</param>
+		/// <param name="languages"></param>
+		/// <returns></returns>
 		public IEnumerable<SearchResult> SearchSubtitles(string file, string[] languages)
 		{
 			var result = new List<SearchResult>();
@@ -78,7 +85,7 @@ namespace Subtitler.Lib.OpenSubtitles
 			}
 			else
 			{
-				throw new OpensubtitlesConnectorException("Provided file path is not valid.");
+				throw new OpensubtitlesConnectorException("Provided file not valid.");
 			}
 
 			return result;
@@ -98,15 +105,13 @@ namespace Subtitler.Lib.OpenSubtitles
 		/// <summary>
 		///  Check if file exists, todo checks if allowed
 		/// </summary>
-		private bool IsValidFile(string file)
+		private static bool IsValidFile(string file)
 		{
 			if (!string.IsNullOrEmpty(file))
 			{
-				FileInfo info = new FileInfo(file);
+				var info = new FileInfo(file);
 				if (info.Exists)
-				{
 					return true;
-				}
 			}
 			return false;
 		}

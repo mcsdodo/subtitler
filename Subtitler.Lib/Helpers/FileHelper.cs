@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Windows;
 
 namespace Subtitler.Lib.Helpers
 {
@@ -42,17 +44,14 @@ namespace Subtitler.Lib.Helpers
 
 		public static string StripExtension(string name)
 		{
-			return name.Remove(name.LastIndexOf('.'));
+			var ext = Path.GetExtension(name);
+			return name.Remove(name.LastIndexOf(ext));
 		}
 
-		public static string GetFileExtension(string name)
+		public static string GetExtensionFromString(string name)
 		{
-			int lastIndexOfDot = name.LastIndexOf('.');
-			if (lastIndexOfDot > 1 && lastIndexOfDot < name.Length-1)
-			{
-				return name.Substring(lastIndexOfDot+1);
-			}
-			return null;
+			var ext = Path.GetExtension(name);
+			return ext;
 		}
 
 		public static void WriteFileFromStream(Stream rawStream, string destination)
@@ -62,10 +61,24 @@ namespace Subtitler.Lib.Helpers
 			File.WriteAllBytes(destination, mStream.ToArray());
 		}
 
+		/// <summary>
+		/// Takes comma separated list of extensions (".mpeg, .avi, ...") and extension to compare with
+		/// </summary>
 		public static bool IsFileTypeAllowed(string extension, string allowedExtensions)
 		{
-			var allowedList = new List<String>( allowedExtensions.Split(',') );
-			return allowedList.Contains(extension);
+			var allowedList = new List<String>(allowedExtensions.Split(',')).Select(s => s.Trim());
+			return allowedList.Contains(extension.ToLower());
+		}
+
+		public static string[] GetFilesFromDropEvent(DragEventArgs e)
+		{
+			if (e.Data == null)
+				return null;
+
+			var files = (e.Data.GetData(DataFormats.FileDrop) as string[]);
+			if (files == null || files.Length == 0)
+				return null;
+			return files;
 		}
 	}
 }

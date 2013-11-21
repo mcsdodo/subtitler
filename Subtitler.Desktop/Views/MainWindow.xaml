@@ -16,20 +16,26 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:subtitler="clr-namespace:Subtitler"
 		xmlns:subtitlerControls="clr-namespace:Subtitler.Desktop.Controls"
 					
-		Title="Subtitler" x:Name="Window"
+		Title="Subtitler" x:Name="Window" AllowDrop="True"
         WindowStartupLocation="CenterScreen" Height="350" Width="400" ResizeMode="CanMinimize" SizeToContent="Manual" ShowIconOnTitleBar="True">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Drop">
+			<cmd:EventToCommand Command="{Binding DropFile, Mode=OneWay}" PassEventArgsToCommand="True"/>
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
 	<controls:MetroWindow.Resources>
 		<viewModels:ViewModelLocator x:Key="ViewModelLocator"/>
 	</controls:MetroWindow.Resources>
 	<controls:MetroWindow.DataContext>
 		<Binding Path="MainWindow" Source="{StaticResource ViewModelLocator}"/>
+		
 	</controls:MetroWindow.DataContext>
 
 	<controls:MetroWindow.WindowCommands>
 		<controls:WindowCommands>
-			<Button Content="Settings" Cursor="Hand" Command="{Binding OpenSettings}"/>
-			<Button Content="Reload" Cursor="Hand" Command="{Binding ReloadData}" />
 			<Button Content="Open file" Cursor="Hand" Command="{Binding OpenFile}" />
+			<Button Content="Reload" Cursor="Hand" Command="{Binding ReloadData}" />
+			<Button Content="Settings" Cursor="Hand" Command="{Binding OpenSettings}"/>
 		</controls:WindowCommands>
 	</controls:MetroWindow.WindowCommands>
 
@@ -44,10 +50,9 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		<behaviours:BorderlessWindowBehavior></behaviours:BorderlessWindowBehavior>
 	</i:Interaction.Behaviors>
 
-	<Grid x:Name="MainGrid" >
-		<controls:ProgressRing IsActive="{Binding IsLoading}" Width="50" Height="50"/>
-		<!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">-->
+	<Grid x:Name="MainGrid" AllowDrop="True" >
 		
+		<controls:ProgressRing IsActive="{Binding IsLoading}" Width="50" Height="50"/>
 		<ListView x:Name="listv"  ItemsSource="{Binding SubtitlesCollection}" HorizontalContentAlignment="Stretch" Background="Transparent"
 					  Height="{Binding ElementName=MainGrid, Path=ActualHeight}" BorderThickness="0" BorderBrush="Transparent" >
 			<ListView.Style>
@@ -93,14 +98,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<!--</StackPanel>-->
 
-		<!--<Button Content="can execute command?"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-				
-                    Margin="294,0,0,0"
-                    Command="{Binding DoNothingCommand}" />-->
 
 	</Grid>
 </controls:MetroWindow>

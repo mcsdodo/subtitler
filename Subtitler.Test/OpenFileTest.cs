@@ -37,29 +37,9 @@ namespace Subtitler.Test
 			var viewModel = new MainWindowViewModel(_dataService.Object, _settings.Object, _ioService.Object);
 			viewModel.OpenFile.Execute(null);
 
-			Assert.AreEqual(string.Empty, viewModel.File);
+			Assert.IsTrue(viewModel.Movie.IsNull);
 		}
 
-		[TestMethod]
-		public void LoadFileFromArgs_FileDoesNotExist_ExecutesOpenFile()
-		{
-			
-			//using (ShimsContext.Create())
-			//{
-				//Subtitler.Lib.Helpers.Fakes.ShimArgumentsHelper.ParseArgumentsStringArray = strings => null;
-				_ioService.Setup(ioServ => ioServ.OpenFileDialog(It.IsAny<string>()))
-						 .Returns(() => "AAA.txt");
-
-				var viewModel = new MainWindowViewModel(_dataService.Object, _settings.Object, _ioService.Object);
-
-				Assert.AreEqual("AAA.txt", viewModel.File);
-
-			//}
-			
-
-		}
-
-		
 
 
 	}

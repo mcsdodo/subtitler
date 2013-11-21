@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -30,6 +31,7 @@ namespace Subtitler.Desktop.ViewModels
 	public class MainWindowViewModel : SubtitlerViewModelBase
 	{
 		#region Properties
+
 
 		private ObservableCollection<Subtitle> _subtitlesCollection = new ObservableCollection<Subtitle>();
 		public ObservableCollection<Subtitle> SubtitlesCollection
@@ -73,46 +75,46 @@ namespace Subtitler.Desktop.ViewModels
 			}
 		}
 
-		private string _file;
-		public string File
+		private Movie _movie;
+		public Movie Movie
 		{
-			get { return _file; }
+			get { return _movie ?? Movie.NullMovie(); }
+			set { _movie = value; }
 		}
+
 
 		private IDataService _dataService;
 		private ISettings _settings;
 		private IOService _ioService;
 		private int _downloadFinishedCount = 0;
 		private int _totalDownloadCount = 0;
-		
 
 		#endregion
 
 		#region Commands and delegates
-		public ICommand DoNothingCommand { get { return new RelayCommand(OnDoNothing, CanExecuteDoNothing); } }
-		public RelayCommand<object> Download { get { return new RelayCommand<object>(OnDownloadCommand); } }
+		public RelayCommand<object> Download { get { return new RelayCommand<object>(OnDownload); } }
 		public RelayCommand OpenSettings { get { return new RelayCommand(OnShowSettings);} }
-		public RelayCommand ReloadData { get { return new RelayCommand(OnLoadData); } }
+		public RelayCommand ReloadData { get { return new RelayCommand(OnLoadData, CanExecuteLoadData); } }
 		public RelayCommand OpenFile {get {return new RelayCommand(OnOpenFile);}}
+		public RelayCommand<DragEventArgs> DropFile { get { return new RelayCommand<DragEventArgs>(OnDropFile); } }
 		#endregion
 
 		#region ctor
-
-		public bool HasInternet { get; set; }
+		
 		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService)
 		{
 			_dataService = dataService;
 			_settings = settings;
 			_ioService = ioService;
-			_file = ArgumentsHelper.ParseArguments(Environment.GetCommandLineArgs(), "file");
+
+			var filePath = ArgumentsHelper.ParseArguments(Environment.GetCommandLineArgs(), "file");
+			_movie = Movie.FromFile(filePath);
 
 			_dataService.LogIn();
 
-			HasInternet = _dataService.CanConnect;
-
-			if (HasInternet)
+			if (_dataService.CanConnect)
 			{
-				LoadDataAsync(_file);
+				GetSubtitlesAsync(Movie.FullPath);
 			}
 			else
 				DisplayNoConnectionErrorMessage();
@@ -122,15 +124,31 @@ namespace Subtitler.Desktop.ViewModels
 
 		#region Command Handlers
 
-		private void OnOpenFile()
+		private void OnDropFile(DragEventArgs e)
 		{
-			_file = _ioService.OpenFileDialog("");
-			LoadDataAsync(_file);
+			var files = FileHelper.GetFilesFromDropEvent(e);
+
+			var fileInfo = new FileInfo(files[0]); 
+			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions))
+			{
+				GetSubtitlesAsync(fileInfo.FullName);
+			}
+			else
+			{
+				SubtitlesCollection.Clear();
+				ShowMessage("Warning!",string.Format("Filetype {0} not allowed.", fileInfo.Extension));
+			}
 		}
 
-		private void OnDownloadCommand(object selectedSubtitles)
+		private void OnOpenFile()
 		{
-			var file = Movie.ParseFile(_file);
+			var pathFromDialog = _ioService.OpenFileDialog("");
+			Movie = Movie.FromFile(pathFromDialog);
+			GetSubtitlesAsync(Movie.FullPath);
+		}
+
+		private void OnDownload(object selectedSubtitles)
+		{
 			var subtitles = ((System.Collections.IList)selectedSubtitles).Cast<Subtitle>().ToList();
 			_totalDownloadCount = subtitles.Count;
 
@@ -138,14 +156,14 @@ namespace Subtitler.Desktop.ViewModels
 			{
 				foreach (Subtitle subtitle in subtitles)
 				{
-					subtitle.DownloadAsync(file.Directory, ResolveFinalFileName(subtitle.SubFileName, file.Name, false), _settings.ShouldUnzipFile,
+					subtitle.DownloadAsync(Movie.Directory, ResolveFinalFileName(subtitle.SubFileName, Movie.NameWithoutExt, false), _settings.ShouldUnzipFile,
 						callback:
 							() =>
 							{
 								_downloadFinishedCount++;
 								if (_downloadFinishedCount == _totalDownloadCount)
 								{
-									ShowMessage("", "All subtitles downloaded");
+									ShowMessage("Info", "All subtitles downloaded");
 								}
 							});
 				}
@@ -153,18 +171,19 @@ namespace Subtitler.Desktop.ViewModels
 			else
 			{
 				var subtitle = subtitles.Single();
-				subtitle.DownloadAsync(file.Directory, ResolveFinalFileName(subtitle.SubFileName, file.Name, _settings.ShouldRenameFile), _settings.ShouldUnzipFile,
-					callback: () => ShowMessage("", "Download finished."));
+				subtitle.DownloadAsync(Movie.Directory, ResolveFinalFileName(subtitle.SubFileName, Movie.NameWithoutExt, _settings.ShouldRenameFile), _settings.ShouldUnzipFile,
+					callback: () => ShowMessage("Info", "Download finished."));
 			}
-		}
-
-		private void OnDoNothing()
-		{
 		}
 
 		private void OnLoadData()
 		{
-			LoadDataAsync(_file);
+			if (Movie.IsNull)
+			{
+				ShowMessage("Warning!","No movie selected. Please use drag'n'drop or Open file dialog.");
+			}
+			else
+				GetSubtitlesAsync(Movie.FullPath);
 		}
 
 		private void OnShowSettings()
@@ -172,9 +191,9 @@ namespace Subtitler.Desktop.ViewModels
 			IsSettingsFlyoutOpened = !IsSettingsFlyoutOpened;
 		}
 
-		private bool CanExecuteDoNothing()
+		private bool CanExecuteLoadData()
 		{
-			return false;
+			return !Movie.IsNull;
 		}
 
 		#endregion
@@ -189,7 +208,7 @@ namespace Subtitler.Desktop.ViewModels
 				return FileHelper.StripExtension(subFileName);
 		}
 
-		private void LoadDataAsync(string file)
+		private void GetSubtitlesAsync(string file)
 		{			
 			IsLoading = true;
 
@@ -213,7 +232,7 @@ namespace Subtitler.Desktop.ViewModels
 			if (subtitles.Count > 0)
 			{
 				SubtitlesCollection.Clear();
-				foreach (Subtitle subtitle in subtitles)
+				foreach (var subtitle in subtitles)
 				{
 					SubtitlesCollection.Add(subtitle);
 				}
@@ -228,7 +247,8 @@ namespace Subtitler.Desktop.ViewModels
 
 		private void DisplayNoConnectionErrorMessage()
 		{
-			ShowMessage("No internet connection.", "Warning!");
+			SubtitlesCollection.Clear();
+			ShowMessage("Warning!", "No internet connection.");
 		}
 
 		#endregion

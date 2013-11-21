@@ -12,9 +12,9 @@ namespace Subtitler.Test
 		{
 			string fileName = "movie.avi";
 
-			string ext = FileHelper.GetFileExtension(fileName);
+			string ext = FileHelper.GetExtensionFromString(fileName);
 
-			Assert.AreEqual("avi", ext);
+			Assert.AreEqual(".avi", ext);
 
 		}
 
@@ -23,9 +23,9 @@ namespace Subtitler.Test
 		{
 			string fileName = "movie";
 
-			string ext = FileHelper.GetFileExtension(fileName);
+			string ext = FileHelper.GetExtensionFromString(fileName);
 
-			Assert.AreEqual(null, ext);
+			Assert.AreEqual("", ext);
 		}
 
 		[TestMethod]
@@ -42,16 +42,16 @@ namespace Subtitler.Test
 		{
 			string fileName = "movie.";
 
-			string ext = FileHelper.GetFileExtension(fileName);
+			string ext = FileHelper.GetExtensionFromString(fileName);
 
-			Assert.AreEqual(null, ext);
+			Assert.AreEqual("", ext);
 		}
 
 		[TestMethod]
 		public void IsExtensionAllowed_Is()
 		{
-			string ext = "avi";
-			bool isAllowed = FileHelper.IsFileTypeAllowed(ext, "avi,mpeg,divx");
+			string ext = ".avi";
+			bool isAllowed = FileHelper.IsFileTypeAllowed(ext, ".avi,.mpeg,.divx");
 
 			Assert.IsTrue(isAllowed);
 		}
@@ -59,8 +59,8 @@ namespace Subtitler.Test
 		[TestMethod]
 		public void IsExtensionAllowed_IsNot()
 		{
-			string ext = "aaa";
-			bool isAllowed = FileHelper.IsFileTypeAllowed(ext, "avi,mpeg,divx");
+			string ext = ".aaa";
+			bool isAllowed = FileHelper.IsFileTypeAllowed(ext, ".avi,.mpeg,.divx");
 
 			Assert.IsFalse(isAllowed);
 		}

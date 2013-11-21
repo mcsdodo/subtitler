@@ -21,6 +21,10 @@ namespace Subtitler.Desktop
 		{
 			ServerUrl = ConfigurationManager.AppSettings["serverUrl"];
 			AllowedExtensions = ConfigurationManager.AppSettings["allowedFileExtensions"];
+			if (AllowedExtensions == null)
+				throw new ConfigurationException("Config file must contain appSettings entry with key 'allowedFileExtensions' with comma separated file extensions, e.g. '.mpg,.avi'.");
+			if (ServerUrl == null)
+				throw new ConfigurationException("Config file must contain appSettings entry with key 'serverUrl' with specified opensubtitles.org XML-RPC service path.");
 		}
 
 
