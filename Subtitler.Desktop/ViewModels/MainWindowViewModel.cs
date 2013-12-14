@@ -86,6 +86,8 @@ namespace Subtitler.Desktop.ViewModels
 		private IDataService _dataService;
 		private ISettings _settings;
 		private IOService _ioService;
+		private IDownloadHelper _downloadHelper;
+		private IFileHelper _fileHelper;
 		private int _downloadFinishedCount = 0;
 		private int _totalDownloadCount = 0;
 
@@ -101,11 +103,13 @@ namespace Subtitler.Desktop.ViewModels
 
 		#region ctor
 		
-		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService)
+		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService, IDownloadHelper downloadHelper, IFileHelper fileHelper)
 		{
 			_dataService = dataService;
 			_settings = settings;
 			_ioService = ioService;
+			_downloadHelper = downloadHelper;
+			_fileHelper = fileHelper;
 
 			var filePath = ArgumentsHelper.ParseArguments(Environment.GetCommandLineArgs(), "file");
 			_movie = Movie.FromFile(filePath);
@@ -127,24 +131,32 @@ namespace Subtitler.Desktop.ViewModels
 		private void OnDropFile(DragEventArgs e)
 		{
 			var files = FileHelper.GetFilesFromDropEvent(e);
-
-			var fileInfo = new FileInfo(files[0]); 
-			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions))
-			{
-				GetSubtitlesAsync(fileInfo.FullName);
-			}
-			else
-			{
-				SubtitlesCollection.Clear();
-				ShowMessage("Warning!",string.Format("Filetype {0} not allowed.", fileInfo.Extension));
-			}
+			CheckFile(files[0]);
 		}
 
 		private void OnOpenFile()
 		{
 			var pathFromDialog = _ioService.OpenFileDialog("");
-			Movie = Movie.FromFile(pathFromDialog);
-			GetSubtitlesAsync(Movie.FullPath);
+			if (string.IsNullOrEmpty(pathFromDialog))
+			{
+				return;
+			}
+			CheckFile(pathFromDialog);
+		}
+
+		private void CheckFile(string filePath)
+		{
+			var fileInfo = new FileInfo(filePath);
+			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions))
+			{
+				Movie = Movie.FromFile(filePath);
+				GetSubtitlesAsync(Movie.FullPath);
+			}
+			else
+			{
+				SubtitlesCollection.Clear();
+				ShowMessage("Warning!", string.Format("Filetype {0} not allowed.", fileInfo.Extension));
+			}
 		}
 
 		private void OnDownload(object selectedSubtitles)
@@ -152,27 +164,38 @@ namespace Subtitler.Desktop.ViewModels
 			var subtitles = ((System.Collections.IList)selectedSubtitles).Cast<Subtitle>().ToList();
 			_totalDownloadCount = subtitles.Count;
 
+			Action<string> renameAndUnzipAction = pathToArchive => {};
+
+			Action<string> downloadCallBack;
 			if (_totalDownloadCount > 1)
 			{
-				foreach (Subtitle subtitle in subtitles)
+				downloadCallBack = pathToFile =>
 				{
-					subtitle.DownloadAsync(Movie.Directory, ResolveFinalFileName(subtitle.SubFileName, Movie.NameWithoutExt, false), _settings.ShouldUnzipFile,
-						callback:
-							() =>
-							{
-								_downloadFinishedCount++;
-								if (_downloadFinishedCount == _totalDownloadCount)
-								{
-									ShowMessage("Info", "All subtitles downloaded");
-								}
-							});
-				}
+					_downloadFinishedCount++;
+					if (_downloadFinishedCount == _totalDownloadCount)
+					{
+						renameAndUnzipAction(pathToFile);
+						ShowMessage("Info", "All subtitles downloaded");
+					}
+				};
 			}
 			else
 			{
-				var subtitle = subtitles.Single();
-				subtitle.DownloadAsync(Movie.Directory, ResolveFinalFileName(subtitle.SubFileName, Movie.NameWithoutExt, _settings.ShouldRenameFile), _settings.ShouldUnzipFile,
-					callback: () => ShowMessage("Info", "Download finished."));
+				downloadCallBack = pathToFile => { renameAndUnzipAction(pathToFile); ShowMessage("Info", "Download finished."); };
+			}
+
+
+			foreach (Subtitle subtitle in subtitles)
+			{
+				if (_settings.ShouldUnzipFile)
+				{
+					renameAndUnzipAction = pathToArchive => 
+					{
+						_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? FileHelper.StripExtension(Movie.NameWithoutExt) : "");
+					};
+				}
+
+				_downloadHelper.DownloadFileAsync(subtitle.ZipDownloadLink, Movie.Directory, subtitle.SubFileName, downloadCallBack);
 			}
 		}
 

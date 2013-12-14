@@ -38,6 +38,9 @@
     <Reference Include="GetHash">
       <HintPath>Assemblies\GetHash.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.2-rc1\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -56,6 +59,8 @@
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\DownloadHelper.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\IDownloadHelper.cs" />
+    <Compile Include="Helpers\IFileHelper.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="OpenSubtitles\IConnector.cs" />
     <Compile Include="OpenSubtitles\IOpensubtitlesProxy.cs" />

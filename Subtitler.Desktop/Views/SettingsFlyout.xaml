@@ -105,8 +105,8 @@
 		</TabItem>
 		<TabItem Header="Misc"   >
 			<StackPanel Margin="11 0 80 0" >
-				<controls:ToggleSwitch Content="Rename file" IsChecked="{Binding ShouldRenameFile}" Margin="-13,0,0,0" />
-				<controls:ToggleSwitch Content="Unzip file" IsChecked="{Binding ShouldUnzipFile}" Margin="-13,0,0,0" />
+				<controls:ToggleSwitch x:Name="ShouldUnzip" Content="Unzip file" IsChecked="{Binding ShouldUnzipFile}" Margin="-13,0,0,0" />
+				<controls:ToggleSwitch x:Name="ShouldRename" Content="Rename file" IsChecked="{Binding ShouldRenameFile}" IsEnabled="{Binding ElementName=ShouldUnzip, Path=IsChecked}" Margin="-13,0,0,0" />
 				<!--<controls:ToggleSwitch x:Name="ThemeSwitch" OnLabel="Dark theme" OffLabel="Light theme" Margin="-13,0,0,0" >
 					<i:Interaction.Triggers>
 						<i:EventTrigger EventName="IsCheckedChanged">

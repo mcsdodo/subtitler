@@ -1,8 +1,8 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:Subtitler.Desktop"
-                           x:Key="Locator" />
+	  <vm:ViewModelLocator xmlns:vm="clr-namespace:Subtitler.Desktop"
+						   x:Key="Locator" />
   </Application.Resources>
   
   In the View:
@@ -19,22 +19,23 @@ using Microsoft.Practices.ServiceLocation;
 using Subtitler.Desktop.DAL;
 using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
+using Subtitler.Lib.Helpers;
 using Subtitler.Lib.OpenSubtitles;
 
 namespace Subtitler.Desktop.ViewModels
 {
-    /// <summary>
-    /// This class contains static references to all the view models in the
-    /// application and provides an entry point for the bindings.
-    /// </summary>
-    public class ViewModelLocator
-    {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
-        public ViewModelLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+	/// <summary>
+	/// This class contains static references to all the view models in the
+	/// application and provides an entry point for the bindings.
+	/// </summary>
+	public class ViewModelLocator
+	{
+		/// <summary>
+		/// Initializes a new instance of the ViewModelLocator class.
+		/// </summary>
+		public ViewModelLocator()
+		{
+			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
 			if (ViewModelBase.IsInDesignModeStatic)
 			{
@@ -50,30 +51,32 @@ namespace Subtitler.Desktop.ViewModels
 
 			SimpleIoc.Default.Register<ISettings, Settings>();
 			SimpleIoc.Default.Register<IOService, IOServiceImpl>();
+			SimpleIoc.Default.Register<IDownloadHelper, DownloadHelper>();
+			SimpleIoc.Default.Register<IFileHelper, FileHelper>();
 
 			SimpleIoc.Default.Register<MainWindowViewModel>();
 			SimpleIoc.Default.Register<SettingsWindowViewModel>();			
-        }
+		}
 
 		public MainWindowViewModel MainWindow
-        {
-            get
-            {
+		{
+			get
+			{
 				return ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-            }
-        }
+			}
+		}
 
-	    public SettingsWindowViewModel SettingsFlyout
-	    {
-		    get
-		    {
-			    return ServiceLocator.Current.GetInstance<SettingsWindowViewModel>();
-		    }
-	    }
-        
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
-        }
-    }
+		public SettingsWindowViewModel SettingsFlyout
+		{
+			get
+			{
+				return ServiceLocator.Current.GetInstance<SettingsWindowViewModel>();
+			}
+		}
+		
+		public static void Cleanup()
+		{
+			// TODO Clear the ViewModels
+		}
+	}
 }

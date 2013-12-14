@@ -34,7 +34,7 @@ namespace Subtitler.Test
 			             .Returns(() => "");
 
 			//Setup target and test
-			var viewModel = new MainWindowViewModel(_dataService.Object, _settings.Object, _ioService.Object);
+			var viewModel = new MainWindowViewModel(_dataService.Object, _settings.Object, _ioService.Object, null, null);
 			viewModel.OpenFile.Execute(null);
 
 			Assert.IsTrue(viewModel.Movie.IsNull);

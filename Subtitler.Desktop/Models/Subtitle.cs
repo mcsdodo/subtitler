@@ -48,11 +48,6 @@ namespace Subtitler.Desktop.Models
 			get { return _language ?? (_language = Language.GetAllLanguages().First(l => l.Id == SubLanguageID)); }
 		}
 
-		public void DownloadAsync(string directory, string fileName, bool unzip, Action callback)
-		{
-			var dh = new DownloadHelper(ZipDownloadLink, directory, fileName, unzip);
-			dh.DownloadFileAsync(callback);
-		} 
 		#endregion	
 	}
 }

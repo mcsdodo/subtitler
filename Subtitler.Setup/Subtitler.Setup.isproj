@@ -28,4 +28,14 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\Subtitler.Desktop\Subtitler.Desktop.csproj">
+			<Name>Subtitler.Desktop</Name>
+			<Project>{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\Subtitler.Lib\Subtitler.Lib.csproj">
+			<Name>Subtitler.Lib</Name>
+			<Project>{3D7CD51F-1F3F-4DC2-843A-A05A53A53868}</Project>
+		</ProjectReference>
+	</ItemGroup>
 </Project>

@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+
+; Open files
+[HKEY_CLASSES_ROOT\*\shell\Find subtitles\command]
+@="\"C:\\Program Files\\Subtitler\\Subtitler.exe\" \"%1\""

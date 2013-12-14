@@ -80,6 +80,7 @@
     <Compile Include="OpenFileTest.cs" />
     <Compile Include="OpenSubtitlesConnectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CompressTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

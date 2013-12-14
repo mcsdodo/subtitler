@@ -4,32 +4,37 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Windows;
+using Ionic.Zip;
 
 namespace Subtitler.Lib.Helpers
 {
-	public static class FileHelper
+	public class FileHelper : IFileHelper
 	{
-		public static void ExtractArchive(string archivePath, string outPath)
+		public void ExtractArchive(string archivePath, string outPath, string fileName= "")
 		{
+			var subtitleExtensions = new List<string>() { ".srt", ".sub" };
 			try
 			{
-				using (FileStream fInStream = new FileStream(archivePath, FileMode.Open, FileAccess.Read))
+				using (ZipFile zipFileEntries = ZipFile.Read(archivePath))
 				{
-					using (GZipStream zipStream = new GZipStream(fInStream, CompressionMode.Decompress))
+					foreach (ZipEntry zipEntry in zipFileEntries)
 					{
-						using (FileStream fOutStream = new FileStream(outPath, FileMode.Create, FileAccess.Write))
+						var originalExtension = (new FileInfo(zipEntry.FileName)).Extension;
+						if (subtitleExtensions.Contains(originalExtension.ToLower()))
 						{
-							byte[] tempBytes = new byte[4096];
-							int i;
-							while ((i = zipStream.Read(tempBytes, 0, tempBytes.Length)) != 0)
+							if (!string.IsNullOrEmpty(fileName))
 							{
-								fOutStream.Write(tempBytes, 0, i);
+								zipEntry.FileName = fileName + originalExtension;
 							}
+							zipEntry.Extract(outPath);
+							return;
 						}
+						
 					}
 				}
+
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
 			}
 		}
