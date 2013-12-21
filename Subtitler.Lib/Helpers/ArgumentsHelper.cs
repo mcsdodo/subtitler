@@ -7,7 +7,7 @@ namespace Subtitler.Lib.Helpers
 		/// <summary>
 		/// returns arg entry from application arguments
 		/// </summary>
-		public static string ParseArguments(string[] args, string arg)
+		public static string ParseArgumentsForKey(string[] args, string key)
 		{
 			var arguments = new Dictionary<string, string>();
 
@@ -19,11 +19,20 @@ namespace Subtitler.Lib.Helpers
 				}
 			}
 
-			if (arguments.ContainsKey(arg))
+			if (arguments.ContainsKey(key))
 			{
-				return arguments[arg];
+				return arguments[key];
 			}
 
+			return "";
+		}
+
+		public static string ParseFirstArgument(string[] args)
+		{
+			if (args.Length > 1)
+			{
+				return args[1];
+			}
 			return "";
 		}
 	}

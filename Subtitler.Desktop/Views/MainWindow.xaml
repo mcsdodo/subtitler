@@ -62,7 +62,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 							<Setter Property="Template">
 								<Setter.Value>
 									<ControlTemplate TargetType="ListView">
-										<TextBlock Text="No items found..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+										<TextBlock Text="{Binding EmptyTemplateString}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 									</ControlTemplate>
 								</Setter.Value>
 							</Setter>

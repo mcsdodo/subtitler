@@ -23,13 +23,13 @@ namespace Subtitler.Test
 		}
 
 		[TestMethod]
+		[ExpectedException(typeof(WebException))]
 		public void TestNoConnection()
 		{
 			using (ShimsContext.Create())
 			{
 				ShimConnectionHelper.CheckConnectionString = s => { throw new WebException(); };
 				var connector = OpensubtitlesConnector.CreateConnector("http://api.opensubtitles.org/xml-rpc");
-				Assert.IsNull(connector);
 			}
 		}
 

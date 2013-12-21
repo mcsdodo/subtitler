@@ -2,16 +2,18 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:models="clr-namespace:Subtitler.Desktop.Models">
 	<models:LanguageCollection x:Key="LanguageCollection">
+		<models:Language Id="slo" ImgPos="666" Name="Slovak" ShortId="sk" Use="True" />
+		<models:Language Id="cze" ImgPos="72" Name="Czech" ShortId="cs" Use="True" />
+		<models:Language Id="eng" ImgPos="144" Name="English" ShortId="en" Use="True" />
+		
 		<models:Language Id="alb" ImgPos="702" Name="Albanian" ShortId="sq" Use="False" />
 		<models:Language Id="ara" ImgPos="18" Name="Arabic" ShortId="ar" Use="False" />
 		<models:Language Id="baq" ImgPos="1026" Name="Basque" ShortId="eu" Use="False" />
 		<models:Language Id="bul" ImgPos="54" Name="Bulgarian" ShortId="bg" Use="False" />
 		<models:Language Id="cat" ImgPos="90" Name="Catalan" ShortId="ca"  Use="False"/>
 		<models:Language Id="chi" ImgPos="828" Name="Chinese" ShortId="zh" Use="False" />
-		<models:Language Id="cze" ImgPos="72" Name="Czech" ShortId="cs" Use="True" />
 		<models:Language Id="dan" ImgPos="108" Name="Danish" ShortId="da" Use="False" />
 		<models:Language Id="dut" ImgPos="540" Name="Dutch" ShortId="nl" Use="False" />
-		<models:Language Id="eng" ImgPos="144" Name="English" ShortId="en" Use="True" />
 		<models:Language Id="est" ImgPos="180" Name="Estonian" ShortId="et" Use="False" />
 		<models:Language Id="fin" ImgPos="216" Name="Finnish" ShortId="fi"  Use="False"/>
 		<models:Language Id="fre" ImgPos="234" Name="French" ShortId="fr" Use="False" />
@@ -39,7 +41,6 @@
 		<models:Language Id="rus" ImgPos="648" Name="Russian" ShortId="ru" Use="False" />
 		<models:Language Id="scc" ImgPos="720" Name="Serbian" ShortId="sr" Use="False" />
 		<models:Language Id="sin" ImgPos="936" Name="Sinhalese" ShortId="si" Use="False" />
-		<models:Language Id="slo" ImgPos="666" Name="Slovak" ShortId="sk" Use="True" />
 		<models:Language Id="slv" ImgPos="684" Name="Slovenian" ShortId="sl" Use="False" />
 		<models:Language Id="spa" ImgPos="162" Name="Spanish" ShortId="es" Use="False" />
 		<models:Language Id="swe" ImgPos="738" Name="Swedish" ShortId="sv" Use="False" />

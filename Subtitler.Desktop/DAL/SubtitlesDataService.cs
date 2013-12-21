@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.OpenSubtitles;
+using System.Net;
 
 namespace Subtitler.Desktop.DAL
 {

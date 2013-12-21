@@ -59,7 +59,8 @@ namespace Subtitler.Desktop.Models
 
 		public static LanguageCollection GetAllLanguages()
 		{
-			return Application.Current.Resources["LanguageCollection"] as LanguageCollection;
+			var languages = Application.Current.Resources["LanguageCollection"] as LanguageCollection;
+			return languages;
 		}
 		
 		public string Id { get; set; }

@@ -25,13 +25,14 @@ namespace Subtitler.Lib.OpenSubtitles
 			try
 			{
 				ConnectionHelper.CheckConnection(serverUrl);
-				var connector = new OpensubtitlesConnector(serverUrl);
-				return connector;
 			}
 			catch (WebException e)
 			{
 				return null;
 			}
+			
+			var connector = new OpensubtitlesConnector(serverUrl);
+			return connector;
 		} 
 		#endregion
 

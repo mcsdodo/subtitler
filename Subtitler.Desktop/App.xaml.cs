@@ -47,6 +47,7 @@ namespace Subtitler.Desktop
 				service.LogOut();
 				Desktop.Properties.Settings.Default.Save();
 			}
+			catch {}
 			finally
 			{
 				base.OnExit(e);	

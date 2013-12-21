@@ -71,6 +71,23 @@ namespace Subtitler.Desktop.ViewModels
 				{
 					_isLoading = value;
 					RaisePropertyChanged(() => IsLoading);
+					RaisePropertyChanged(() => EmptyTemplateString);
+				}
+			}
+		}
+
+		private string _emptyTemplateString;
+		public string EmptyTemplateString
+		{
+			get
+			{
+				if (IsLoading)
+				{
+					return "Loading ...";
+				}
+				else
+				{
+					return "No subtitles found ...";
 				}
 			}
 		}
@@ -106,22 +123,24 @@ namespace Subtitler.Desktop.ViewModels
 		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService, IDownloadHelper downloadHelper, IFileHelper fileHelper)
 		{
 			_dataService = dataService;
+
 			_settings = settings;
 			_ioService = ioService;
 			_downloadHelper = downloadHelper;
 			_fileHelper = fileHelper;
 
-			var filePath = ArgumentsHelper.ParseArguments(Environment.GetCommandLineArgs(), "file");
-			_movie = Movie.FromFile(filePath);
-
-			_dataService.LogIn();
-
 			if (_dataService.CanConnect)
 			{
+				_dataService.LogIn();
+				var filePath = ArgumentsHelper.ParseArgumentsForKey(Environment.GetCommandLineArgs(), "file");
+				//var filePath = ArgumentsHelper.ParseFirstArgument(Environment.GetCommandLineArgs());
+				Movie = Movie.FromFile(filePath);
 				GetSubtitlesAsync(Movie.FullPath);
 			}
 			else
 				DisplayNoConnectionErrorMessage();
+
+			
 		}
 
 		#endregion
