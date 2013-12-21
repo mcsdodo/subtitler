@@ -191,7 +191,7 @@ namespace Subtitler.Desktop.ViewModels
 				{
 					renameAndUnzipAction = pathToArchive => 
 					{
-						_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? FileHelper.StripExtension(Movie.NameWithoutExt) : "");
+						_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? Movie.NameWithoutExt : "");
 					};
 				}
 

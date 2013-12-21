@@ -11,12 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitler.Desktop", "Subtit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitler.Test", "Subtitler.Test\Subtitler.Test.csproj", "{C99DD78D-329B-463F-B66A-145446FD25D6}"
 EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Subtitler.Setup", "Subtitler.Setup\Subtitler.Setup.isproj", "{0D322E1F-193D-46D8-A533-860E41F06538}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3D7CD51F-1F3F-4DC2-843A-A05A53A53868} = {3D7CD51F-1F3F-4DC2-843A-A05A53A53868}
-		{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C} = {CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F3763F8A-8C50-499B-A0C1-0B01DEC8EB2E}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -94,24 +88,6 @@ Global
 		{C99DD78D-329B-463F-B66A-145446FD25D6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C99DD78D-329B-463F-B66A-145446FD25D6}.Release|x64.ActiveCfg = Release|Any CPU
 		{C99DD78D-329B-463F-B66A-145446FD25D6}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|Any CPU.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|ARM.ActiveCfg = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|ARM.Build.0 = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|Mixed Platforms.ActiveCfg = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|x64.ActiveCfg = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|x64.Build.0 = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|x86.ActiveCfg = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Debug|x86.Build.0 = DVD-5
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|Any CPU.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|Any CPU.Build.0 = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|ARM.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|ARM.Build.0 = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|Mixed Platforms.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|Mixed Platforms.Build.0 = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|x64.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|x64.Build.0 = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|x86.ActiveCfg = SingleImage
-		{0D322E1F-193D-46D8-A533-860E41F06538}.Release|x86.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

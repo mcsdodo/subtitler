@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:models="clr-namespace:Subtitler.Desktop.Models">
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:models="clr-namespace:Subtitler.Desktop.Models">
 	<models:LanguageCollection x:Key="LanguageCollection">
 		<models:Language Id="alb" ImgPos="702" Name="Albanian" ShortId="sq" Use="False" />
 		<models:Language Id="ara" ImgPos="18" Name="Arabic" ShortId="ar" Use="False" />
