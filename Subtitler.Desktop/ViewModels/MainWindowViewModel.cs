@@ -76,7 +76,6 @@ namespace Subtitler.Desktop.ViewModels
 			}
 		}
 
-		private string _emptyTemplateString;
 		public string EmptyTemplateString
 		{
 			get
@@ -132,8 +131,8 @@ namespace Subtitler.Desktop.ViewModels
 			if (_dataService.CanConnect)
 			{
 				_dataService.LogIn();
-				var filePath = ArgumentsHelper.ParseArgumentsForKey(Environment.GetCommandLineArgs(), "file");
-				//var filePath = ArgumentsHelper.ParseFirstArgument(Environment.GetCommandLineArgs());
+				//var filePath = ArgumentsHelper.ParseArgumentsForKey(Environment.GetCommandLineArgs(), "file");
+				var filePath = ArgumentsHelper.ParseFirstArgument(Environment.GetCommandLineArgs());
 				Movie = Movie.FromFile(filePath);
 				GetSubtitlesAsync(Movie.FullPath);
 			}

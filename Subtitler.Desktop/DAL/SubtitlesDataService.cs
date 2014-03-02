@@ -22,10 +22,10 @@ namespace Subtitler.Desktop.DAL
 			Connector = OpensubtitlesConnector.CreateConnector(App.ServerUrl);
 		}
 
-		//public SubtitlesDataService(IConnector connector)
-		//{
-		//	_connector = connector;
-		//}
+		public SubtitlesDataService(IConnector connector)
+		{
+			_connector = connector;
+		}
 
 		public void LogIn()
 		{

@@ -13,8 +13,6 @@ namespace Subtitler.Desktop.Models
 {
 	public class Subtitle : NotificationObject
 	{
-		private string _downloadLink;
-
 		#region ctor
 
 		public Subtitle(){}
