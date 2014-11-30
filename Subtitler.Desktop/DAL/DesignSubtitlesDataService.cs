@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using Subtitler.Desktop.Models;
-using Subtitler.Lib;
 using Subtitler.Lib.Helpers;
 
 namespace Subtitler.Desktop.DAL
 {
 	public class DesignSubtitlesDataService : IDataService
 	{
-		public void LogIn()
-		{
-			//throw new NotImplementedException();
-		}
-
 		public void LogOut()
 		{
-			//throw new NotImplementedException();
 		}
 
 		public bool CanConnect
@@ -36,7 +25,6 @@ namespace Subtitler.Desktop.DAL
 
 
 			var allSettingsLangs = (new Settings()).Languages;
-			Thread.Sleep(2000);
 			var results = new List<Subtitle>();
 			for (var i = 0; i < 200; i++)
 			{

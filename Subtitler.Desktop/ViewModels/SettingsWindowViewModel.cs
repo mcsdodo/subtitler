@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
-using GalaSoft.MvvmLight.Command;
-using MahApps.Metro;
+﻿using GalaSoft.MvvmLight.Command;
 using Subtitler.Desktop.Models;
 
 namespace Subtitler.Desktop.ViewModels
@@ -44,7 +41,6 @@ namespace Subtitler.Desktop.ViewModels
 		#endregion
 
 		#region Commands
-		public RelayCommand<object> ChangeTheme { get { return new RelayCommand<object>(OnChangeThemeCommand); } }
 		public RelayCommand<object> SelectLanguage { get { return new RelayCommand<object>(OnSelectLanguage);} }
 
 
@@ -55,18 +51,6 @@ namespace Subtitler.Desktop.ViewModels
 		{
 			
 		}
-
-		private void OnChangeThemeCommand(object args)
-		{
-			var check = (bool) args;
-			var theme = ThemeManager.DetectTheme(Application.Current);
-
-			var name = check ? "Cyan" : "Emerald";
-			var accent = ThemeManager.DefaultAccents.First(x => x.Name == name);
-			ThemeManager.ChangeTheme(Application.Current, accent, check ? Theme.Light : Theme.Dark);
-
-		}
-
 		public SettingsWindowViewModel(ISettings settings)
 		{
 			_settings = settings;
@@ -74,7 +58,6 @@ namespace Subtitler.Desktop.ViewModels
 			{
 				_settings.Languages = sender as LanguageCollection;
 			};
-			
 		}
 
 		

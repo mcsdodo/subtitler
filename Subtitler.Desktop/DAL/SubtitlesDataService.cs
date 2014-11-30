@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.OpenSubtitles;
 
@@ -26,8 +25,7 @@ namespace Subtitler.Desktop.DAL
 			if (_connector.LoggedIn)
 			{
 				var subtitles = _connector.SearchSubtitles(file, languages);
-				Mapper.CreateMap<SearchResult, Subtitle>();
-				return Mapper.Map<IEnumerable<SearchResult>, IEnumerable<Subtitle>>(subtitles).ToList();
+				return subtitles.Select(Subtitle.FromSearchResult).ToList();
 			}
 			return new List<Subtitle>();
 		}

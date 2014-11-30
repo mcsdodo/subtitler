@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Subtitler.Lib.OpenSubtitles;
 
 namespace Subtitler.Desktop.Models
 {
@@ -6,7 +7,7 @@ namespace Subtitler.Desktop.Models
 	{
 		#region ctor
 
-		public Subtitle(){}
+		private Subtitle(){}
 
 		public Subtitle(string subFileName, string langShort, string downloadZipLink)
 		{
@@ -38,5 +39,24 @@ namespace Subtitler.Desktop.Models
 		}
 
 		#endregion	
+
+		public static Subtitle FromSearchResult(SearchResult searchResult)
+		{
+			var subtitle = new Subtitle()
+				{
+					SubLanguageID = searchResult.SubLanguageID,
+					SubFileName = searchResult.SubFileName,
+					MovieName = searchResult.MovieName,
+					IDMovieImdb = searchResult.IDMovieImdb,
+					MovieImdbRating = searchResult.MovieImdbRating,
+					LanguageName = searchResult.LanguageName,
+					MovieReleaseName = searchResult.MovieReleaseName,
+					SubDownloadLink = searchResult.SubDownloadLink,
+					SubtitlesLink = searchResult.SubtitlesLink,
+					ZipDownloadLink = searchResult.ZipDownloadLink,
+					MovieYear = searchResult.MovieYear
+				};
+			return subtitle;
+		}
 	}
 }
