@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 
-namespace Subtitler.Desktop.Helpers
+namespace Subtitler.Desktop.Models
 {
 	[Serializable]
 	public class NotificationObject : INotifyPropertyChanged

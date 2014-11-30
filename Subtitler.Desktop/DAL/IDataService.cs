@@ -9,9 +9,7 @@ namespace Subtitler.Desktop.DAL
 {
 	public interface IDataService
 	{
-		void LogIn();
 		void LogOut();
-		bool CanConnect { get; }
 		List<Subtitle> GetSubtitles(string file, params string[] languages);
 	}
 }

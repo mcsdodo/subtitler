@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib;
 using Subtitler.Lib.Helpers;

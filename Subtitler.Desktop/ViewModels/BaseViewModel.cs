@@ -1,7 +1,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
-using Subtitler.Desktop.Helpers;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Subtitler.Desktop.ViewModels
 {

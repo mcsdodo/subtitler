@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using Subtitler.Desktop.Models;
 
-namespace Subtitler.Desktop.Helpers
+namespace Subtitler.Desktop.Models
 {
 	[Serializable]
 	public class Settings : ISettings

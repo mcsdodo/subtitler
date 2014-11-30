@@ -8,5 +8,6 @@ namespace Subtitler.Lib.OpenSubtitles
 		void LogIn();
 		void LogOut();
 		IEnumerable<SearchResult> SearchSubtitles(string file, string[] languages);
+		bool LoggedIn { get; }
 	}
 }

@@ -1,38 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
-using MahApps.Metro;
-using MahApps.Metro.Controls;
-using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.CommandWpf;
 using Subtitler.Desktop.DAL;
-using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.Helpers;
-using Subtitler.Lib.OpenSubtitles;
 
 namespace Subtitler.Desktop.ViewModels
 {
-
-
 	public class MainWindowViewModel : SubtitlerViewModelBase
 	{
 		#region Properties
-
-
 		private ObservableCollection<Subtitle> _subtitlesCollection = new ObservableCollection<Subtitle>();
 		public ObservableCollection<Subtitle> SubtitlesCollection
 		{
@@ -104,15 +86,13 @@ namespace Subtitler.Desktop.ViewModels
 		private IOService _ioService;
 		private IDownloadHelper _downloadHelper;
 		private IFileHelper _fileHelper;
-		private int _downloadFinishedCount = 0;
-		private int _totalDownloadCount = 0;
 
 		#endregion
 
 		#region Commands and delegates
 		public RelayCommand<object> Download { get { return new RelayCommand<object>(OnDownload); } }
-		public RelayCommand OpenSettings { get { return new RelayCommand(OnShowSettings);} }
-		public RelayCommand ReloadData { get { return new RelayCommand(OnLoadData, CanExecuteLoadData); } }
+		public RelayCommand OpenSettings { get { return new RelayCommand(OnShowSettings); } }
+		public RelayCommand ReloadData { get { return new RelayCommand(OnReloadData, CanExecuteLoadData); } }
 		public RelayCommand OpenFile {get {return new RelayCommand(OnOpenFile);}}
 		public RelayCommand<DragEventArgs> DropFile { get { return new RelayCommand<DragEventArgs>(OnDropFile); } }
 		#endregion
@@ -127,19 +107,6 @@ namespace Subtitler.Desktop.ViewModels
 			_ioService = ioService;
 			_downloadHelper = downloadHelper;
 			_fileHelper = fileHelper;
-
-			if (_dataService.CanConnect)
-			{
-				_dataService.LogIn();
-				//var filePath = ArgumentsHelper.ParseArgumentsForKey(Environment.GetCommandLineArgs(), "file");
-				var filePath = ArgumentsHelper.ParseFirstArgument(Environment.GetCommandLineArgs());
-				Movie = Movie.FromFile(filePath);
-				GetSubtitlesAsync(Movie.FullPath);
-			}
-			else
-				DisplayNoConnectionErrorMessage();
-
-			
 		}
 
 		#endregion
@@ -149,7 +116,7 @@ namespace Subtitler.Desktop.ViewModels
 		private void OnDropFile(DragEventArgs e)
 		{
 			var files = FileHelper.GetFilesFromDropEvent(e);
-			CheckFile(files[0]);
+			ProcessFileAndGetSubtitles(files[0]);
 		}
 
 		private void OnOpenFile()
@@ -159,10 +126,10 @@ namespace Subtitler.Desktop.ViewModels
 			{
 				return;
 			}
-			CheckFile(pathFromDialog);
+			ProcessFileAndGetSubtitles(pathFromDialog);
 		}
 
-		private void CheckFile(string filePath)
+		private void ProcessFileAndGetSubtitles(string filePath)
 		{
 			var fileInfo = new FileInfo(filePath);
 			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions))
@@ -180,17 +147,24 @@ namespace Subtitler.Desktop.ViewModels
 		private void OnDownload(object selectedSubtitles)
 		{
 			var subtitles = ((System.Collections.IList)selectedSubtitles).Cast<Subtitle>().ToList();
-			_totalDownloadCount = subtitles.Count;
+			var totalDownloadCount = subtitles.Count;
+			var downloadFinishedCount = 0;
 
-			Action<string> renameAndUnzipAction = pathToArchive => {};
+			Action<string> renameAndUnzipAction = pathToArchive => { };
+			if (_settings.ShouldUnzipFile)
+			{
+				renameAndUnzipAction =
+					pathToArchive =>
+					_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? Movie.NameWithoutExt : "");
+			}
 
 			Action<string> downloadCallBack;
-			if (_totalDownloadCount > 1)
+			if (totalDownloadCount > 1)
 			{
 				downloadCallBack = pathToFile =>
 				{
-					_downloadFinishedCount++;
-					if (_downloadFinishedCount == _totalDownloadCount)
+					downloadFinishedCount++;
+					if (downloadFinishedCount == totalDownloadCount)
 					{
 						renameAndUnzipAction(pathToFile);
 						ShowMessage("Info", "All subtitles downloaded");
@@ -202,29 +176,15 @@ namespace Subtitler.Desktop.ViewModels
 				downloadCallBack = pathToFile => { renameAndUnzipAction(pathToFile); ShowMessage("Info", "Download finished."); };
 			}
 
-
 			foreach (Subtitle subtitle in subtitles)
 			{
-				if (_settings.ShouldUnzipFile)
-				{
-					renameAndUnzipAction = pathToArchive => 
-					{
-						_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? Movie.NameWithoutExt : "");
-					};
-				}
-
 				_downloadHelper.DownloadFileAsync(subtitle.ZipDownloadLink, Movie.Directory, subtitle.SubFileName, downloadCallBack);
 			}
 		}
 
-		private void OnLoadData()
+		private void OnReloadData()
 		{
-			if (Movie.IsNull)
-			{
-				ShowMessage("Warning!","No movie selected. Please use drag'n'drop or Open file dialog.");
-			}
-			else
-				GetSubtitlesAsync(Movie.FullPath);
+			GetSubtitlesAsync(Movie.FullPath);
 		}
 
 		private void OnShowSettings()
@@ -241,23 +201,15 @@ namespace Subtitler.Desktop.ViewModels
 
 		#region Other methods
 
-		private string ResolveFinalFileName(string subFileName, string movieFileName, bool rename)
-		{
-			if (rename)
-				return movieFileName;
-			else
-				return FileHelper.StripExtension(subFileName);
-		}
-
 		private void GetSubtitlesAsync(string file)
 		{			
 			IsLoading = true;
 
-			using (var asyncExecutor = new AsyncExecutor())
-			{
-				asyncExecutor.ExecuteTask(GetSubtitles, file);
-				asyncExecutor.OnExecutionComplete += PopulateSubtitleCollection;
-			}
+			Task.Run(() =>
+				{
+					var subtitles = GetSubtitles(file);
+					Application.Current.Dispatcher.Invoke(() => PopulateSubtitleCollection(subtitles));
+				});
 		}
 
 		private List<Subtitle> GetSubtitles(string file)

@@ -1,13 +1,4 @@
-﻿using System;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Media;
-using Subtitler.Desktop.Helpers;
-using Subtitler.Lib;
-using Subtitler.Lib.Helpers;
+﻿using System.Linq;
 
 namespace Subtitler.Desktop.Models
 {

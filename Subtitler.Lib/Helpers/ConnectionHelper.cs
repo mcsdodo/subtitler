@@ -15,11 +15,11 @@ namespace Subtitler.Lib.Helpers
 				HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
 				if (response.StatusCode == HttpStatusCode.OK) return true;
-				else return false;
+				throw new WebException("Can't connect to XML-RPC service. Response: " + response.StatusCode);
 			}
 			catch (WebException e)
 			{
-				throw new WebException("Can't connect to XML-RPC service. Response: " + e.Status);
+				throw new WebException("Can't connect to XML-RPC service. Response: " + e.Status + " Message: " + e.Message);
 			}
 		}
 

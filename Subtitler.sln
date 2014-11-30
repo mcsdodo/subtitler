@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitler.Lib", "Subtitler.Lib\Subtitler.Lib.csproj", "{3D7CD51F-1F3F-4DC2-843A-A05A53A53868}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitler.Console", "Subtitler.Console\Subtitler.Console.csproj", "{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitler.Desktop", "Subtitler.Desktop\Subtitler.Desktop.csproj", "{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}"
 EndProject
@@ -47,18 +43,6 @@ Global
 		{3D7CD51F-1F3F-4DC2-843A-A05A53A53868}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3D7CD51F-1F3F-4DC2-843A-A05A53A53868}.Release|x64.ActiveCfg = Release|Any CPU
 		{3D7CD51F-1F3F-4DC2-843A-A05A53A53868}.Release|x86.ActiveCfg = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|x64.ActiveCfg = Release|Any CPU
-		{0AE29D0E-BB06-4955-8A14-CF77EFAD3541}.Release|x86.ActiveCfg = Release|Any CPU
 		{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}.Debug|Any CPU.Build.0 = Debug|x86
 		{CEFC84F9-4A48-459F-8CF8-B3D8EA51FD9C}.Debug|ARM.ActiveCfg = Debug|x86

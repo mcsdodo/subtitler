@@ -1,66 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.OpenSubtitles;
-using System.Net;
 
 namespace Subtitler.Desktop.DAL
 {
 	public class SubtitlesDataService : IDataService
 	{
-		public static readonly IConnector Connector;
-
-		private IConnector _connector;
-
-		static SubtitlesDataService()
-		{
-			//todo move to app_start somewhere
-			Connector = OpensubtitlesConnector.CreateConnector(App.ServerUrl);
-		}
+		private readonly IConnector _connector;
 
 		public SubtitlesDataService(IConnector connector)
 		{
 			_connector = connector;
 		}
 
-		public void LogIn()
-		{
-			Connector.LogIn();
-		}
-
 		public void LogOut()
 		{
-			Connector.LogOut();
-		}
-
-		public bool CanConnect
-		{
-			get
-			{
-				return Connector != null;
-			}
+			_connector.LogOut();
 		}
 
 		public List<Subtitle> GetSubtitles(string file, params string[] languages)
 		{
-			var subs = new List<Subtitle>();
-
-			try
+			_connector.LogIn();
+			if (_connector.LoggedIn)
 			{
-				var subtitles = Connector.SearchSubtitles(file, languages);
-				//preco ked to dam to locatora, nejde Design?
+				var subtitles = _connector.SearchSubtitles(file, languages);
 				Mapper.CreateMap<SearchResult, Subtitle>();
-				subs = Mapper.Map<IEnumerable<SearchResult>, IEnumerable<Subtitle>>(subtitles).ToList();
-				//return subtitles.Select(p => new Subtitle(p.SubFileName, p.SubLanguageID, p.SubDownloadLink)).ToList();
+				return Mapper.Map<IEnumerable<SearchResult>, IEnumerable<Subtitle>>(subtitles).ToList();
 			}
-			catch (OpensubtitlesConnectorException) {}
-
-			return subs;
-			
+			return new List<Subtitle>();
 		}
 
 	}

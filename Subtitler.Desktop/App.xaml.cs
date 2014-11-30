@@ -1,11 +1,8 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Windows;
-using AutoMapper;
-using MahApps.Metro;
-using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using Subtitler.Desktop.DAL;
-using Subtitler.Lib.Helpers;
+using Subtitler.Desktop.ViewModels;
 
 namespace Subtitler.Desktop
 {
@@ -14,37 +11,21 @@ namespace Subtitler.Desktop
 	/// </summary>
 	public partial class App : Application
 	{
-		public static readonly string ServerUrl;
-		public static readonly string AllowedExtensions;
-
-		static App()
+		public static string ServerUrl;
+		public static string AllowedExtensions;
+		public static string UserAgent;
+		
+		public App()
 		{
 			ServerUrl = ConfigurationManager.AppSettings["serverUrl"];
 			AllowedExtensions = ConfigurationManager.AppSettings["allowedFileExtensions"];
-			if (AllowedExtensions == null)
-				throw new ConfigurationErrorsException("Config file must contain appSettings entry with key 'allowedFileExtensions' with comma separated file extensions, e.g. '.mpg,.avi'.");
-			if (ServerUrl == null)
-				throw new ConfigurationErrorsException("Config file must contain appSettings entry with key 'serverUrl' with specified opensubtitles.org XML-RPC service path.");
-		}
-
-
-		public App()
-		{
-			
-		}
-
-
-		protected override void OnStartup(StartupEventArgs e)
-		{
-			base.OnStartup(e);
+			UserAgent = ConfigurationManager.AppSettings["userAgent"];
 		}
 
 		protected override void OnExit(ExitEventArgs e)
 		{
 			try
 			{
-				var service = ServiceLocator.Current.GetInstance<IDataService>();
-				service.LogOut();
 				Desktop.Properties.Settings.Default.Save();
 			}
 			catch {}

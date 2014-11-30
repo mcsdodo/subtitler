@@ -1,70 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
 using CookComputing.XmlRpc;
-using Subtitler.Lib.Helpers;
 
 namespace Subtitler.Lib.OpenSubtitles
 {
-	//TODO more search options
-	//todo extract to DLL
-	//todo various exceptions
 	/// <exception cref="OpensubtitlesConnectorException">Throws if something went wrong.</exception>
 	public class OpensubtitlesConnector : IConnector
 	{
+		public event EventHandler<ConnectorEventArgs> OnStatusUpdate;
+
+		#region privates
 		private string _token;
 		private IOpensubtitlesProxy _proxy;
-		private bool LoggedIn { get; set; }
-
-		#region factory
-		public static OpensubtitlesConnector CreateConnector(string serverUrl)
-		{
-			try
-			{
-				ConnectionHelper.CheckConnection(serverUrl);
-			}
-			catch (WebException e)
-			{
-				return null;
-			}
-			
-			var connector = new OpensubtitlesConnector(serverUrl);
-			return connector;
-		} 
+		private readonly string _serverUrl;
+		public bool LoggedIn { get; private set; }
+		private readonly string _userAgent;
+		private readonly string _language;
+		private readonly string _userName;
+		private readonly string _password;
 		#endregion
 
+
 		#region ctor
-		private OpensubtitlesConnector(string serverUrl)
+		public OpensubtitlesConnector(string serverUrl, string userAgent, string language = "", string userName ="", string password = "")
+		{
+			_serverUrl = serverUrl;
+			_userAgent = userAgent;
+			_language = language;
+			_userName = userName;
+			_password = password;
+			CreateProxy();
+		}
+
+		private void CreateProxy()
 		{
 			_proxy = XmlRpcProxyGen.Create<IOpensubtitlesProxy>();
-			_proxy.Url = serverUrl;
+			_proxy.Url = _serverUrl;
 			_proxy.EnableCompression = true;
-		} 
+		}
+		private OpensubtitlesConnector(){}
 		#endregion
 
 		#region API
 		public void LogIn()
 		{
-			var response = _proxy.LogIn("", "", "slo", "Subtitler MCS");
+			var response = _proxy.LogIn(_userName, _password, _language, _userAgent);
 			LoggedIn = ParseStatus(response);
 			_token = response["token"] as string;
-			CheckLogin();
 		}
 
 		public void LogOut()
 		{
-			CheckLogin();
 			var response = _proxy.LogOut(_token);
 		}
 
 		public void KeepAlive()
 		{
-			CheckLogin();
 			var response = _proxy.NoOperation(_token);
-			LoggedIn = ParseStatus(response);
+			if (!ParseStatus(response))
+				LogIn();
 		}
 
 		/// <summary>
@@ -75,21 +72,14 @@ namespace Subtitler.Lib.OpenSubtitles
 		/// <returns></returns>
 		public IEnumerable<SearchResult> SearchSubtitles(string file, string[] languages)
 		{
-			var result = new List<SearchResult>();
-
-			if (IsValidFile(file))
-			{
-				CheckLogin();
-				var searchParams = CreateSearchParams(file, languages);
-				XmlRpcStruct response = _proxy.SearchSubtitles(_token, new[] { searchParams });
-				result = ParseResponse(response).ToList(); 
-			}
-			else
-			{
+			KeepAlive();
+			if (!IsValidFile(file))
 				throw new OpensubtitlesConnectorException("Provided file not valid.");
-			}
 
-			return result;
+			CheckLogin();
+			var searchParams = CreateSearchParams(file, languages);
+			XmlRpcStruct response = _proxy.SearchSubtitles(_token, new[] { searchParams });
+			return ParseResponse(response).ToList(); 
 		} 
 		#endregion
 
@@ -106,15 +96,9 @@ namespace Subtitler.Lib.OpenSubtitles
 		/// <summary>
 		///  Check if file exists, todo checks if allowed
 		/// </summary>
-		private static bool IsValidFile(string file)
+		private bool IsValidFile(string file)
 		{
-			if (!string.IsNullOrEmpty(file))
-			{
-				var info = new FileInfo(file);
-				if (info.Exists)
-					return true;
-			}
-			return false;
+			return !string.IsNullOrEmpty(file) && new FileInfo(file).Exists;
 		}
 
 		private IEnumerable<SearchResult> ParseResponse(XmlRpcStruct response)
@@ -182,6 +166,10 @@ namespace Subtitler.Lib.OpenSubtitles
 				var status = response["status"] as string;
 				if (status == Status.OK)
 					return true;
+				if (status == Status.E406)
+					return false;
+				if (status == Status.E414)
+					throw new OpensubtitlesConnectorException("414 Unknown User Agent.");
 				if (status == Status.E503)
 					throw new OpensubtitlesConnectorException("503 Service unavailable", new WebException("503 Service unavailable"));
 			}				
@@ -189,12 +177,5 @@ namespace Subtitler.Lib.OpenSubtitles
 		}
 		#endregion
 
-	}
-
-	public class OpensubtitlesConnectorException : Exception
-	{
-		public OpensubtitlesConnectorException() {}
-		public OpensubtitlesConnectorException(string message) : base (message){}
-		public OpensubtitlesConnectorException(string message, Exception inner) : base(message, inner) {}
 	}
 }

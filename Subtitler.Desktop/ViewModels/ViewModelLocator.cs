@@ -1,23 +1,6 @@
-/*
-  In App.xaml:
-  <Application.Resources>
-	  <vm:ViewModelLocator xmlns:vm="clr-namespace:Subtitler.Desktop"
-						   x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-
-  You can also use Blend to do all this with the tool's support.
-  See http://www.galasoft.ch/mvvm
-*/
-
-using AutoMapper;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using Subtitler.Desktop.DAL;
-using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
 using Subtitler.Lib.Helpers;
 using Subtitler.Lib.OpenSubtitles;
@@ -30,53 +13,47 @@ namespace Subtitler.Desktop.ViewModels
 	/// </summary>
 	public class ViewModelLocator
 	{
+
+		public static IUnityContainer Container;
+
 		/// <summary>
 		/// Initializes a new instance of the ViewModelLocator class.
 		/// </summary>
 		public ViewModelLocator()
 		{
-			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+			Container = new UnityContainer();
 
 			if (ViewModelBase.IsInDesignModeStatic)
 			{
 				// Create design time view services and models
-				SimpleIoc.Default.Register<IDataService, DesignSubtitlesDataService>();
+				Container.RegisterType<IDataService, DesignSubtitlesDataService>();
 			}
 			else
 			{
 				// Create run time view services and models
-				SimpleIoc.Default.Register<IDataService, SubtitlesDataService>();
-				//SimpleIoc.Default.Register<IDataService, DesignSubtitlesDataService>();
+				Container.RegisterType<IDataService, SubtitlesDataService>();
 			}
 
-			SimpleIoc.Default.Register<ISettings, Settings>();
-			SimpleIoc.Default.Register<IOService, IOServiceImpl>();
-			SimpleIoc.Default.Register<IDownloadHelper, DownloadHelper>();
-			SimpleIoc.Default.Register<IFileHelper, FileHelper>();
+			Container.RegisterType<ISettings, Settings>();
+			Container.RegisterType<IOService, IOServiceImpl>();
+			Container.RegisterType<IDownloadHelper, DownloadHelper>();
+			Container.RegisterType<IFileHelper, FileHelper>();
+			Container.RegisterInstance(typeof (IConnector), new OpensubtitlesConnector(App.ServerUrl, App.UserAgent, "slo"),
+			                            new PerThreadLifetimeManager());
 
-			SimpleIoc.Default.Register<MainWindowViewModel>();
-			SimpleIoc.Default.Register<SettingsWindowViewModel>();			
+
+			Container.RegisterType<MainWindowViewModel>();
+			Container.RegisterType<SettingsWindowViewModel>();			
 		}
 
 		public MainWindowViewModel MainWindow
 		{
-			get
-			{
-				return ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-			}
+			get { return Container.Resolve<MainWindowViewModel>(); }
 		}
 
 		public SettingsWindowViewModel SettingsFlyout
 		{
-			get
-			{
-				return ServiceLocator.Current.GetInstance<SettingsWindowViewModel>();
-			}
-		}
-		
-		public static void Cleanup()
-		{
-			// TODO Clear the ViewModels
+			get { return Container.Resolve<SettingsWindowViewModel>(); }
 		}
 	}
 }

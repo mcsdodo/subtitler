@@ -1,9 +1,8 @@
 ﻿using System;
-using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Subtitler.Desktop.DAL;
-using Subtitler.Desktop.Helpers;
+using Subtitler.Desktop.Models;
 using Subtitler.Desktop.ViewModels;
 using Subtitler.Lib.Helpers;
 
@@ -22,8 +21,6 @@ namespace Subtitler.Test
 			_ioService = new Mock<IOService>();
 			_dataService = new Mock<IDataService>();
 			_settings = new Mock<ISettings>();
-
-			_dataService.Setup(d => d.CanConnect).Returns(true);
 		}
 
 		[TestMethod]

@@ -33,25 +33,5 @@ namespace Subtitler.Lib.Helpers
 				};
 			}
 		}
-
-		private string ResolveFileNameFromHeaders(WebHeaderCollection responseHeaders)
-		{
-			string serverFileName = "";
-			string contentDisposition = responseHeaders["content-disposition"];
-
-			if (!String.IsNullOrEmpty(contentDisposition))
-			{
-				string lookFor = "filename=";
-				int index = contentDisposition.IndexOf(lookFor, StringComparison.CurrentCultureIgnoreCase);
-				if (index >= 0)
-					serverFileName = contentDisposition.Substring(index + lookFor.Length);
-			}
-			if (serverFileName.Length > 0)
-			{
-				serverFileName = serverFileName.Replace("\"", "");
-			}
-
-			return serverFileName;
-		}
 	}
 }

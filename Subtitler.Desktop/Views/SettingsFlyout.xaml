@@ -4,9 +4,6 @@
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:properties="clr-namespace:Subtitler.Desktop.Properties"
-		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-		xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
 		xmlns:viewModels="clr-namespace:Subtitler.Desktop.ViewModels"
 		xmlns:subtitlerControls="clr-namespace:Subtitler.Desktop.Controls"
 		mc:Ignorable="d"
@@ -50,76 +47,18 @@
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</subtitlerControls:SubtitlerListView>
-
-				<!--<ListView ItemsSource="{Binding Languages}" BorderThickness="0" Background="Transparent" BorderBrush="Transparent" Height="100" Grid.Row="1">
-					<ListView.ItemContainerStyle>
-						<Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListBoxItem}}" >
-							<Setter Property="IsSelected" Value="{Binding Use}"></Setter>
-						</Style>
-					</ListView.ItemContainerStyle>
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="30*" ></ColumnDefinition>
-									<ColumnDefinition Width="30*" ></ColumnDefinition>
-									<ColumnDefinition Width="30*"></ColumnDefinition>
-								</Grid.ColumnDefinitions>
-								<Image Width="18" Height="18">
-									<Image.Source>
-										<CroppedBitmap Source="..\Resources\allflags.gif" SourceRect="{Binding Rect}"/>
-									</Image.Source>
-								</Image>
-								<Label Content="{Binding Name}" Grid.Column="1" FontSize="15" FontWeight="SemiBold"/>
-								<CheckBox IsChecked="{Binding Use, Mode=TwoWay}" Grid.Column="2"/>
-
-							</Grid>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ListView>-->
-				
-				
-				<!--<ItemsControl ItemsSource="{Binding Languages, Mode=TwoWay}">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Grid>
-								--><!--<Label Content="{Binding Id}" Grid.Row="0" Grid.Column="1"/>--><!--
-								<Image Width="18" Height="18">
-									<Image.Source>
-										<CroppedBitmap Source="..\Resources\allflags.gif" SourceRect="{Binding Rect}"/>
-									</Image.Source>
-								</Image>
-								<CheckBox IsChecked="{Binding Use, Mode=TwoWay}" />
-							</Grid>
-
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-					<ItemsControl.ItemsPanel>
-						<ItemsPanelTemplate>
-							<UniformGrid Columns="4"></UniformGrid>
-						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-				</ItemsControl>-->
-				
 			</Grid>
 		</TabItem>
 		<TabItem Header="Misc"   >
 			<StackPanel Margin="11 0 80 0" >
 				<controls:ToggleSwitch x:Name="ShouldUnzip" Content="Unzip file" IsChecked="{Binding ShouldUnzipFile}" Margin="-13,0,0,0" />
 				<controls:ToggleSwitch x:Name="ShouldRename" Content="Rename file" IsChecked="{Binding ShouldRenameFile}" IsEnabled="{Binding ElementName=ShouldUnzip, Path=IsChecked}" Margin="-13,0,0,0" />
-				<!--<controls:ToggleSwitch x:Name="ThemeSwitch" OnLabel="Dark theme" OffLabel="Light theme" Margin="-13,0,0,0" >
-					<i:Interaction.Triggers>
-						<i:EventTrigger EventName="IsCheckedChanged">
-							<cmd:EventToCommand Command="{Binding ChangeTheme, Mode=OneWay}" CommandParameter="{Binding IsChecked, ElementName=ThemeSwitch, Mode=OneWay}"></cmd:EventToCommand>
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-				</controls:ToggleSwitch>-->
 			</StackPanel>
 		</TabItem>
 		
 		<TabItem Header="About"  >
 			<StackPanel Margin="11 0 0 0" >
-				<TextBlock>@mcsdodo 2013</TextBlock>
+				<TextBlock>@mcsdodo 2014</TextBlock>
 			</StackPanel>
 		</TabItem>
 	</controls:MetroAnimatedTabControl>

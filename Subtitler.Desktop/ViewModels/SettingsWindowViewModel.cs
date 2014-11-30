@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro;
-using Microsoft.Practices.ServiceLocation;
-using Subtitler.Desktop.Helpers;
 using Subtitler.Desktop.Models;
-using Subtitler.Lib.Helpers;
 
 namespace Subtitler.Desktop.ViewModels
 {

@@ -5,7 +5,7 @@
     </StartArguments>
   </PropertyGroup>
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\Jozef\Desktop\Subtitler\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\Dodo\Desktop\Subtitler\|C:\Users\Dodo\Desktop\|C:\Users\Jozef\Desktop\|C:\Users\Jozef\Desktop\Subtitler\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />
@@ -13,5 +13,6 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>

@@ -4,23 +4,18 @@
 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"					  
 	mc:Ignorable="d"				  
-		xmlns:properties="clr-namespace:Subtitler.Desktop.Properties"
 		xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-		
 		xmlns:viewModels="clr-namespace:Subtitler.Desktop.ViewModels"
 		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-		xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
-		xmlns:debug="clr-namespace:System.Diagnostics;assembly=System"
 		xmlns:views="clr-namespace:Subtitler.Desktop.Views"
 		xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
-		xmlns:subtitler="clr-namespace:Subtitler"
-		xmlns:subtitlerControls="clr-namespace:Subtitler.Desktop.Controls"
-					
-		Title="Subtitler" x:Name="Window" AllowDrop="True"
+                      xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+
+                      Title="Subtitler" x:Name="Window" AllowDrop="True"
         WindowStartupLocation="CenterScreen" Height="350" Width="400" ResizeMode="CanMinimize" SizeToContent="Manual" ShowIconOnTitleBar="True">
 	<i:Interaction.Triggers>
 		<i:EventTrigger EventName="Drop">
-			<cmd:EventToCommand Command="{Binding DropFile, Mode=OneWay}" PassEventArgsToCommand="True"/>
+			<command:EventToCommand Command="{Binding DropFile, Mode=OneWay}" PassEventArgsToCommand="True"/>
 		</i:EventTrigger>
 	</i:Interaction.Triggers>
 	<controls:MetroWindow.Resources>
@@ -41,7 +36,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
 	<controls:MetroWindow.Flyouts>
 		<controls:FlyoutsControl>
-			<views:SettingsFlyout Position="Right" x:Name="SettingsFlyout" IsOpen="{Binding IsSettingsFlyoutOpened}" Width="{Binding Width, ElementName=Window}" />
+			<views:SettingsFlyout x:Name="SettingsFlyout" Position="Right" IsOpen="{Binding IsSettingsFlyoutOpened}" Width="{Binding Width, ElementName=Window}"/>
 		</controls:FlyoutsControl>
 	</controls:MetroWindow.Flyouts>
 
@@ -53,7 +48,7 @@ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	<Grid x:Name="MainGrid" AllowDrop="True" >
 		
 		<controls:ProgressRing IsActive="{Binding IsLoading}" Width="50" Height="50"/>
-		<ListView x:Name="listv"  ItemsSource="{Binding SubtitlesCollection}" HorizontalContentAlignment="Stretch" Background="Transparent"
+		<ListView x:Name="Listv"  ItemsSource="{Binding SubtitlesCollection}" HorizontalContentAlignment="Stretch" Background="Transparent"
 					  Height="{Binding ElementName=MainGrid, Path=ActualHeight}" BorderThickness="0" BorderBrush="Transparent" >
 			<ListView.Style>
 				<Style TargetType="ListView">

@@ -39,33 +39,6 @@ namespace Subtitler.Lib.Helpers
 			}
 		}
 
-		public static void WriteFileFromBytes(string outPath, byte[] byteArray)
-		{
-			using (FileStream fOutStream = new FileStream(outPath, FileMode.Create, FileAccess.Write))
-			{	
-				fOutStream.Write(byteArray, 0, byteArray.Length);
-			}
-		}
-
-		public static string StripExtension(string name)
-		{
-			var ext = Path.GetExtension(name);
-			return name.Remove(name.LastIndexOf(ext));
-		}
-
-		public static string GetExtensionFromString(string name)
-		{
-			var ext = Path.GetExtension(name);
-			return ext;
-		}
-
-		public static void WriteFileFromStream(Stream rawStream, string destination)
-		{
-			MemoryStream mStream = new MemoryStream();
-			rawStream.CopyTo(mStream);
-			File.WriteAllBytes(destination, mStream.ToArray());
-		}
-
 		/// <summary>
 		/// Takes comma separated list of extensions (".mpeg, .avi, ...") and extension to compare with
 		/// </summary>
