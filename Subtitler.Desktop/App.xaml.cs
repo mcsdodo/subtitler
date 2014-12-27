@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Windows;
 using Microsoft.Practices.Unity;
 using Subtitler.Desktop.DAL;
@@ -28,7 +29,6 @@ namespace Subtitler.Desktop
 			{
 				Desktop.Properties.Settings.Default.Save();
 			}
-			catch {}
 			finally
 			{
 				base.OnExit(e);	

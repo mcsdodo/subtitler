@@ -13,8 +13,6 @@ namespace Subtitler.Lib.Helpers
 		public void ExtractArchive(string archivePath, string outPath, string fileName= "")
 		{
 			var subtitleExtensions = new List<string>() { ".srt", ".sub" };
-			try
-			{
 				using (ZipFile zipFileEntries = ZipFile.Read(archivePath))
 				{
 					foreach (ZipEntry zipEntry in zipFileEntries)
@@ -32,11 +30,6 @@ namespace Subtitler.Lib.Helpers
 						
 					}
 				}
-
-			}
-			catch (Exception e)
-			{
-			}
 		}
 
 		/// <summary>
