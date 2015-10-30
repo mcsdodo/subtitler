@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -74,16 +76,9 @@ namespace Subtitler.Desktop.ViewModels
 		}
 
 		private Movie _movie;
-		public Movie Movie
-		{
-			get { return _movie ?? Movie.NullMovie(); }
-			set { _movie = value; }
-		}
-
-
 		private IDataService _dataService;
 		private ISettings _settings;
-		private IOService _ioService;
+		private IOpenFile _openFile;
 		private IDownloadHelper _downloadHelper;
 		private IFileHelper _fileHelper;
 
@@ -92,21 +87,26 @@ namespace Subtitler.Desktop.ViewModels
 		#region Commands and delegates
 		public RelayCommand<object> Download { get { return new RelayCommand<object>(OnDownload); } }
 		public RelayCommand OpenSettings { get { return new RelayCommand(OnShowSettings); } }
-		public RelayCommand ReloadData { get { return new RelayCommand(OnReloadData, CanExecuteLoadData); } }
+		public RelayCommand ReloadData { get { return new RelayCommand(OnReloadData, HasMovie); } }
 		public RelayCommand OpenFile {get {return new RelayCommand(OnOpenFile);}}
 		public RelayCommand<DragEventArgs> DropFile { get { return new RelayCommand<DragEventArgs>(OnDropFile); } }
 		#endregion
 
 		#region ctor
 		
-		public MainWindowViewModel(IDataService dataService, ISettings settings, IOService ioService, IDownloadHelper downloadHelper, IFileHelper fileHelper)
+		public MainWindowViewModel(IDataService dataService, ISettings settings, IOpenFile openFile, IDownloadHelper downloadHelper, IFileHelper fileHelper)
 		{
 			_dataService = dataService;
 
 			_settings = settings;
-			_ioService = ioService;
+			_openFile = openFile;
 			_downloadHelper = downloadHelper;
 			_fileHelper = fileHelper;
+
+			if (IsInDesignModeStatic)
+			{
+				GetSubtitles("");	
+			}
 		}
 
 		#endregion
@@ -121,21 +121,50 @@ namespace Subtitler.Desktop.ViewModels
 
 		private void OnOpenFile()
 		{
-			var pathFromDialog = _ioService.OpenFileDialog("");
-			if (string.IsNullOrEmpty(pathFromDialog))
+			var pathFromDialog = _openFile.OpenFileDialog();
+			if (!string.IsNullOrEmpty(pathFromDialog))
 			{
-				return;
+				ProcessFileAndGetSubtitles(pathFromDialog);
 			}
-			ProcessFileAndGetSubtitles(pathFromDialog);
 		}
+
+		private void OnDownload(object selectedSubtitles)
+		{
+			var subtitles = ((IList)selectedSubtitles).Cast<Subtitle>().ToList();
+			var downloadCallBack = GetDownloadCallback(subtitles.Count);
+
+			foreach (Subtitle subtitle in subtitles)
+			{
+				_downloadHelper.DownloadFileAsync(subtitle.ZipDownloadLink, _movie.Directory, subtitle.SubFileName, downloadCallBack);
+			}
+		}
+
+		private void OnReloadData()
+		{
+			GetSubtitles(_movie.FullPath);
+		}
+
+		private void OnShowSettings()
+		{
+			IsSettingsFlyoutOpened = !IsSettingsFlyoutOpened;
+		}
+
+		public bool HasMovie()
+		{
+			return _movie != null;
+		}
+
+		#endregion
+
+		#region Misc methods
 
 		private void ProcessFileAndGetSubtitles(string filePath)
 		{
 			var fileInfo = new FileInfo(filePath);
-			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions))
+			if (FileHelper.IsFileTypeAllowed(fileInfo.Extension, App.AllowedExtensions) && fileInfo.Exists)
 			{
-				Movie = Movie.FromFile(filePath);
-				GetSubtitlesAsync(Movie.FullPath);
+				_movie = new Movie(fileInfo);
+				GetSubtitles(_movie.FullPath);
 			}
 			else
 			{
@@ -144,106 +173,46 @@ namespace Subtitler.Desktop.ViewModels
 			}
 		}
 
-		private void OnDownload(object selectedSubtitles)
+		private Action<string> GetDownloadCallback(int totalDownloadCount)
 		{
-			var subtitles = ((System.Collections.IList)selectedSubtitles).Cast<Subtitle>().ToList();
-			var totalDownloadCount = subtitles.Count;
 			var downloadFinishedCount = 0;
 
-			Action<string> renameAndUnzipAction = pathToArchive => { };
-			if (_settings.ShouldUnzipFile)
+			Action<string> downloadCallBack = pathToFile =>
 			{
-				renameAndUnzipAction =
-					pathToArchive =>
-					_fileHelper.ExtractArchive(pathToArchive, Movie.Directory, _settings.ShouldRenameFile ? Movie.NameWithoutExt : "");
-			}
-
-			Action<string> downloadCallBack;
-			if (totalDownloadCount > 1)
-			{
-				downloadCallBack = pathToFile =>
+				if (++downloadFinishedCount == totalDownloadCount)
 				{
-					downloadFinishedCount++;
-					if (downloadFinishedCount == totalDownloadCount)
+					if (_settings.ShouldUnzipFile)
 					{
-						renameAndUnzipAction(pathToFile);
-						ShowMessage("Info", "All subtitles downloaded");
+						_fileHelper.ExtractArchive(pathToFile, _movie.Directory, _settings.ShouldRenameFile ? _movie.NameWithoutExt : "");
 					}
-				};
-			}
-			else
-			{
-				downloadCallBack = pathToFile => { renameAndUnzipAction(pathToFile); ShowMessage("Info", "Download finished."); };
-			}
+					ShowMessage("Info", totalDownloadCount > 1 ? "All subtitles downloaded" : "Download finished.");
+				}
+			};
 
-			foreach (Subtitle subtitle in subtitles)
-			{
-				_downloadHelper.DownloadFileAsync(subtitle.ZipDownloadLink, Movie.Directory, subtitle.SubFileName, downloadCallBack);
-			}
+			return downloadCallBack;
 		}
 
-		private void OnReloadData()
-		{
-			GetSubtitlesAsync(Movie.FullPath);
-		}
-
-		private void OnShowSettings()
-		{
-			IsSettingsFlyoutOpened = !IsSettingsFlyoutOpened;
-		}
-
-		private bool CanExecuteLoadData()
-		{
-			return !Movie.IsNull;
-		}
-
-		#endregion
-
-		#region Other methods
-
-		private void GetSubtitlesAsync(string file)
+		private void GetSubtitles(string file)
 		{			
 			IsLoading = true;
 
 			Task.Run(() =>
 				{
-					var subtitles = GetSubtitles(file);
+					var langs = _settings.Languages.Where(l => l.Use).Select(l => l.Id).ToArray();
+					var subtitles = _dataService.GetSubtitles(file, langs);
 					Application.Current.Dispatcher.Invoke(() => PopulateSubtitleCollection(subtitles));
 				});
 		}
 
-		private List<Subtitle> GetSubtitles(string file)
-		{
-			var langs = _settings.Languages.Where(l => l.Use).Select(l => l.Id).ToArray();
-			return _dataService.GetSubtitles(file, langs);
-		}
-
-		private void PopulateSubtitleCollection(object parameters)
-		{
-			var subtitles = parameters as List<Subtitle>;
-			
-			if (subtitles.Count > 0)
-			{
-				SubtitlesCollection.Clear();
-				foreach (var subtitle in subtitles)
-				{
-					SubtitlesCollection.Add(subtitle);
-				}
-			}
-			else
-			{
-				SubtitlesCollection.Clear();
-			}
-			
-			IsLoading = false;
-		}
-
-		private void DisplayNoConnectionErrorMessage()
+		private void PopulateSubtitleCollection(IEnumerable<Subtitle> subtitles)
 		{
 			SubtitlesCollection.Clear();
-			ShowMessage("Warning!", "No internet connection.");
+			foreach (var subtitle in subtitles)
+			{
+				SubtitlesCollection.Add(subtitle);
+			}
+			IsLoading = false;
 		}
-
 		#endregion
 
 	}

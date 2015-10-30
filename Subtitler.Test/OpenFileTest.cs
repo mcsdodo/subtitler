@@ -11,14 +11,14 @@ namespace Subtitler.Test
 	[TestClass]
 	public class OpenFileTest
 	{
-		private Mock<IOService> _ioService;
+		private Mock<IOpenFile> _ioService;
 		private Mock<IDataService> _dataService;
 		private Mock<ISettings> _settings;
 
 		[TestInitialize]
 		public void InitializeTest()
 		{
-			_ioService = new Mock<IOService>();
+			_ioService = new Mock<IOpenFile>();
 			_dataService = new Mock<IDataService>();
 			_settings = new Mock<ISettings>();
 		}
@@ -34,7 +34,7 @@ namespace Subtitler.Test
 			var viewModel = new MainWindowViewModel(_dataService.Object, _settings.Object, _ioService.Object, null, null);
 			viewModel.OpenFile.Execute(null);
 
-			Assert.IsTrue(viewModel.Movie.IsNull);
+			Assert.IsTrue(!viewModel.HasMovie());
 		}
 
 

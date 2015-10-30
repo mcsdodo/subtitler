@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Windows;
 using Ionic.Zip;
@@ -14,7 +13,7 @@ namespace Subtitler.Lib.Helpers
 		{
 			var subtitleExtensions = new List<string>() { ".srt", ".sub" };
 				using (ZipFile zipFileEntries = ZipFile.Read(archivePath))
-				{
+				{	
 					foreach (ZipEntry zipEntry in zipFileEntries)
 					{
 						var originalExtension = (new FileInfo(zipEntry.FileName)).Extension;
@@ -24,7 +23,7 @@ namespace Subtitler.Lib.Helpers
 							{
 								zipEntry.FileName = fileName + originalExtension;
 							}
-							zipEntry.Extract(outPath);
+							zipEntry.Extract(outPath,ExtractExistingFileAction.OverwriteSilently);
 							return;
 						}
 						

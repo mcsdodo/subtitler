@@ -121,9 +121,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\SubtitlerListView.cs" />
-    <Compile Include="DAL\IOService.cs" />
-    <Compile Include="DAL\IOServiceImpl.cs" />
-    <Compile Include="Models\INullable.cs" />
+    <Compile Include="DAL\IOpenFile.cs" />
+    <Compile Include="DAL\OpenFile.cs" />
     <Compile Include="Models\ISettings.cs" />
     <Compile Include="Models\NotificationObject.cs" />
     <Compile Include="Models\Settings.cs" />
@@ -150,7 +149,7 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Subtitle.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\SubtitlerViewModelBase.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

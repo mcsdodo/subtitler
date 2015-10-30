@@ -7,7 +7,6 @@
 		xmlns:views="clr-namespace:Subtitler.Desktop.Views"
 		xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
                       xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
-
                       Title="Subtitler" x:Name="Window" AllowDrop="True"
         WindowStartupLocation="CenterScreen" Height="350" Width="400" ResizeMode="CanMinimize" SizeToContent="Manual" ShowIconOnTitleBar="True">
 	<i:Interaction.Triggers>
@@ -20,7 +19,6 @@
 	</controls:MetroWindow.Resources>
 	<controls:MetroWindow.DataContext>
 		<Binding Path="MainWindow" Source="{StaticResource ViewModelLocator}"/>
-		
 	</controls:MetroWindow.DataContext>
 
 	<controls:MetroWindow.WindowCommands>

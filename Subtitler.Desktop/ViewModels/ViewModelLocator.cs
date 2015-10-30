@@ -35,7 +35,7 @@ namespace Subtitler.Desktop.ViewModels
 			}
 
 			Container.RegisterType<ISettings, Settings>();
-			Container.RegisterType<IOService, IOServiceImpl>();
+			Container.RegisterType<IOpenFile, OpenFile>();
 			Container.RegisterType<IDownloadHelper, DownloadHelper>();
 			Container.RegisterType<IFileHelper, FileHelper>();
 			Container.RegisterInstance(typeof (IConnector), new OpensubtitlesConnector(App.ServerUrl, App.UserAgent, "slo"),
